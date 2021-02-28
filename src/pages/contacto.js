@@ -1,9 +1,12 @@
 import React from 'react';
+import Navigation from "../components/Navigation";
 
 const Contacto= () =>{
     return(
+
         <div>
-        Hola Mundo
+            <Navigation/>
+            Hola Mundo
         </div>
     );
 };
