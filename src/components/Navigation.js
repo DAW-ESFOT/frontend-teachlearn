@@ -5,16 +5,16 @@ const Navigation = () => {
         <div>
             <ul>
                 <li>
-                    <Link href="/">Home</Link>
+                    <Link href="/">Inicio</Link>
                 </li>
                 <li>
-                    <Link href="/contacto">Contacto</Link>
+                    <Link href="/contact">Contacto</Link>
                 </li>
                 <li>
-                    <Link href="/politicas">Politicas de uso</Link>
+                    <Link href="/politics">Políticas de uso</Link>
                 </li>
                 <li>
-                    <Link href="/vision-mision">Visión y Misión</Link>
+                    <Link href="/vision-mission">Visión y Misión</Link>
                 </li>
 
             </ul>
