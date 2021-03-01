@@ -2,7 +2,8 @@ import Link from "next/link";
 
 const Navigation = () => {
     return (
-        <div>
+
+        <div className="col-md-12">
             <ul>
                 <li>
                     <Link href="/">Inicio</Link>
