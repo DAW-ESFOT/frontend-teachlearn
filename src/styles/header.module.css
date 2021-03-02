@@ -1,0 +1,10 @@
+.header{
+    margin: auto;
+    background-color: #27AE60;
+    text-align: center;
+    padding: 25px;
+}
+.container a{
+    margin-right: 10px;
+    margin-left: 10px;
+}

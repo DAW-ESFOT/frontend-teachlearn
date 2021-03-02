@@ -3,23 +3,19 @@ import styles from '../styles/Home.module.css'
 import Navigation from "../components/Navigation";
 import React from "react";
 import {StepForwardOutlined} from '@ant-design/icons';
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <header>
+    <div>
         <h1>TEACHlearn</h1>
-      </header>
         <div>
             <Navigation/>
         </div>
-        <footer>
-            <h3>JEGY-Empresa de desarrollo</h3>
-            <p>Acerca de</p>
-            <p>Contáctanos</p>
-            <p><StepForwardOutlined />Privacidad</p>
-
-        </footer>
+        <div className={styles.container}><h3>JEGY-Empresa de desarrollo</h3></div>
+        <div>
+            <Footer/>
+        </div>
     </div>
   )
 }
