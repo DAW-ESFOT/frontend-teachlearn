@@ -2,12 +2,13 @@ import React from 'react';
 import Navigation from "../components/Navigation";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 const Politics= () =>{
     return(
         <div className={styles.container}>
-            <header >
-                <Link href="/"><button >Regresar</button></Link>
+            <header className={styles.header}>
+                <Navigation/>
             </header>
             <div>
                 <h1>Políticas de uso</h1>
@@ -53,13 +54,11 @@ const Politics= () =>{
                 <p>
                     Ésta empresa no venderá, cederá ni distribuirá la información personal que se recopile sin su consentimiento, salvo
                     que sea requerido por un juez ante un orden judicial.
-                </p>
-                <p>
                     TEACHlearn se reserva el derecho de modificar los términos de uso en cualquier momento
                 </p>
             </div>
-            <footer>
-                <Navigation/>
+            <footer className={styles.footer}>
+                <Footer/>
             </footer>
         </div>
     );

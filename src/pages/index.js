@@ -11,11 +11,6 @@ export default function Home() {
   return (
     <div>
         <div>
-            <h1>TEACHlearn</h1>
-            <button>Iniciar Sesión</button>
-            <button>Registro</button>
-        </div>
-        <div>
             <Navigation/>
         </div>
         <div className={styles.container}>
