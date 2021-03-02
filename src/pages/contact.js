@@ -25,7 +25,7 @@ const Contact= () =>{
                                 <li><a href='https://www.linkedin.com/' target="_blank" rel="noopener noreferrer"><LinkedinOutlined/> 0961628542 / 0997918338 </a></li>
                                 <li><a href='https://mail.google.com/' target="_blank" rel="noopener noreferrer"><MailOutlined/> yomara.diaz@epn.edu.ec</a></li>
                                 <li><a href='https://www.instagram.com/' target="_blank" rel="noopener noreferrer"><InstagramOutlined/> Teachleanr2021</a></li>
-                                <li><a href='https://www.instagram.com/' target="_blank" rel="noopener noreferrer"><YoutubeOutlined/> JEGY Empresa de Desarrollo</a></li>
+                                <li><a href='https://www.instagram.com/' target="_blank" rel="noopener noreferrer"><YoutubeOutlined/> JEGY Empresa de Desarrollo de Software</a></li>
                             </ul>
                         </div>
                     </div>
