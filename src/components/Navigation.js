@@ -1,8 +1,9 @@
 import Link from "next/link";
+import styles from "../styles/header.module.css"
 
 const Navigation = () => {
     return (
-
+        <div className={styles.header}>
         <div className="col-md-12">
             <ul>
                 <li>
@@ -19,6 +20,7 @@ const Navigation = () => {
                 </li>
 
             </ul>
+        </div>
         </div>
     );
 };
