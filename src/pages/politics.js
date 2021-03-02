@@ -1,12 +1,13 @@
 import React from 'react';
 import Navigation from "../components/Navigation";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 const Politics= () =>{
     return(
         <div className={styles.container}>
             <header >
-                <h1>TEACHlearn</h1>
+                <Link href="/"><button >Regresar</button></Link>
             </header>
             <div>
                 <h1>Políticas de uso</h1>
@@ -57,7 +58,6 @@ const Politics= () =>{
                     TEACHlearn se reserva el derecho de modificar los términos de uso en cualquier momento
                 </p>
             </div>
-                Hola Mundo
             <footer>
                 <Navigation/>
             </footer>
