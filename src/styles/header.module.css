@@ -8,3 +8,11 @@
     margin-right: 10px;
     margin-left: 10px;
 }
+.container button{
+    float: right;
+    background-color: #408cba;
+    text-align: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 5px
+}

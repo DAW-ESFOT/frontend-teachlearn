@@ -4,6 +4,8 @@ import Navigation from "../components/Navigation";
 import React from "react";
 import {StepForwardOutlined} from '@ant-design/icons';
 import Footer from "../components/Footer";
+import Link from "next/link";
+
 
 export default function Home() {
   return (
@@ -16,7 +18,19 @@ export default function Home() {
         <div>
             <Navigation/>
         </div>
-        <div className={styles.container}><h3>JEGY-Empresa de desarrollo</h3></div>
+        <div className={styles.container}>
+            <div className="row">
+                <h1 id='bnv'>¡Te damos la bienvenida a la mejor comunidad para tutorías del Ecuador!</h1>
+                <div className="col-md-6">
+                    <div id="carousel-inner" className={styles.main}>
+                        <div className="carousel-item active">
+                            <img src="https://cursosmultimedia.es/tutoresformacion/wp-content/uploads/2020/01/tutoria-2-300x190.png" className="d-block w-100" alt="..."/>
+                        </div>
+                        <Link href="/contact"><button type="button" className="btn btn-primary">Registro</button></Link>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div>
             <Footer/>
         </div>
