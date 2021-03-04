@@ -10,9 +10,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-        <div>
-            <Navigation/>
-        </div>
+
         <div className={styles.container}>
             <div className="row">
                 <h1 id='bnv'>¡Te damos la bienvenida a la mejor comunidad para tutorías del Ecuador!</h1>
