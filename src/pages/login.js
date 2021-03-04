@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
-    const  login  = useAuth();
+    const {login}  = useAuth();
     const { register, handleSubmit, errors } = useForm({
         resolver: yupResolver(schema),
     });
