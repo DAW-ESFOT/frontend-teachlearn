@@ -9,6 +9,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
+
       <div className={styles.container}>
         <header>
           <h1>TEACHlearn</h1>
@@ -20,6 +21,7 @@ export default function Home() {
           <p>Privacidad</p>
         </footer>
       </div>
+
     <div>
 
         <div className={styles.container}>
