@@ -14,3 +14,15 @@ a {
 * {
   box-sizing: border-box;
 }
+.container{
+  padding: 15px;
+  background-color: #001529;
+  color: white;
+  font-size: 13px;
+  line-height: 0;
+}
+
+.container col-md-12{
+  justify: space-around;
+  align: middle ;
+}

@@ -1,3 +1,6 @@
+
+import React from 'react';
+import Navigation from "../components/Navigation";
 import mision from './images/misionicono.png';
 import vision from './images/misionicono.webp';
 import './styles/vision-mision.css';
@@ -39,5 +42,3 @@ function App() {
 }
 
 export default App;
-
-

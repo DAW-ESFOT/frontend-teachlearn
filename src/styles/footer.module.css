@@ -1,0 +1,24 @@
+.footer{
+    padding: 15px;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    line-height: 0;
+    justify-content:space-around;
+    align-items:normal;
+}
+.rutas{
+    text-align: center;
+}
+.iconos{
+    float: right;
+    margin:-6px;
+}
+.privacidad{
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.footer a{
+    margin-top: 10px;
+    margin-left: 10px;
+}
