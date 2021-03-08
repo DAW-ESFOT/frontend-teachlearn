@@ -9,21 +9,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-
-      <div className={styles.container}>
-        <header>
-          <h1>TEACHlearn</h1>
-        </header>
-        <footer>
-          <h3>JEGY-Empresa de desarrollo</h3>
-          <p>Acerca de</p>
-          <p>Contáctanos</p>
-          <p>Privacidad</p>
-        </footer>
-      </div>
-
-    <div>
-
+      <>
         <div className={styles.container}>
             <div className="row">
                 <h1 id='bnv'>¡Te damos la bienvenida a la mejor comunidad para tutorías del Ecuador!</h1>
@@ -40,6 +26,6 @@ export default function Home() {
         <div>
             <Footer/>
         </div>
-    </div>
+      </>  
   )
 }
