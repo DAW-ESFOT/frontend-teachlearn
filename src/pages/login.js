@@ -118,59 +118,61 @@ const Login = () => {
                     <Typography component="h1" variant="h5">
                     Inicio de Sesión
                     </Typography>
-                    <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        ref={register}
-                        label="Correo Electrónico"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        ref={register}
-                        name="password"
-                        label="Contraseña"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Recordar"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Iniciar sesión
-                    </Button>
-                    <Grid container>
-                        <Grid item xs>
-                        <Link href="#" variant="body2">
-                            ¿Olvidó la contraseña?
-                        </Link>
+                    <form className={classes.form} noValidate>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            ref={register}
+                            label="Correo Electrónico"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <p>{errors.email?.message}</p>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            ref={register}
+                            name="password"
+                            label="Contraseña"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Recordar"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onSubmit={handleSubmit(onSubmit)}
+                        >
+                            Iniciar sesión
+                        </Button>
+                        <Grid container>
+                            <Grid item xs>
+                            <Link href="#" variant="body2">
+                                ¿Olvidó la contraseña?
+                            </Link>
+                            </Grid>
+                            <Grid item>
+                            <Link href="../register" variant="body2">
+                                {"¿No tiene una cuenta? Registrese"}
+                            </Link>
+                            </Grid>
                         </Grid>
-                        <Grid item>
-                        <Link href="#" variant="body2">
-                            {"¿No tiene una cuenta? Registrese"}
-                        </Link>
-                        </Grid>
-                    </Grid>
-                    <Box mt={5}>
-                        <Copyright />
-                    </Box>
+                        <Box mt={5}>
+                            <Copyright />
+                        </Box>
                     </form>
                 </div>
                 </Grid>
