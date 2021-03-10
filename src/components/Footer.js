@@ -20,15 +20,6 @@ const useStyles = makeStyles((theme) => ({
     iconos: {
         display: "-webkit-box",
     },
-    //logo: {
-       // padding: 8,
-       // [theme.breakpoints.up("sm")]: {
-       //     display: "block",
-       // },
-       // "& a img": {
-       //     maxHeight: 55,
-       // },
-    //},
 }))
 
 export default function Footer() {
