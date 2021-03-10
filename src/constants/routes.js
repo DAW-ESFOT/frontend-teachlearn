@@ -2,6 +2,9 @@
 const publicRoutes = {
     LOGIN: "/login",
     REGISTER: "/registro",
+    CONTACT:"/contact",
+    POLITICS:"/politics",
+    VISION:"/vision-mission",
     // USERS: "/usuarios",
     // USERS_ID: `/usuario/:id`,
     ABOUT: "/about",
