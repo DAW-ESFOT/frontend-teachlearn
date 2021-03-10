@@ -1,13 +1,25 @@
 import React from 'react';
-import Navigation from "../components/Navigation";
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import Footer from "../components/Footer";
+import { makeStyles } from '@material-ui/core/styles';
+
+
 
 const Politics= () =>{
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            maxWidth: 400,
+            textAlign:'center',
+          },
+          container:{
+            width:1250,
+            maxHeight:'100%',
+            fontFamily:'Roboto'
+          },
+          
+      }));
+    const classes = useStyles();
     return(
-        <div className={styles.container}>
-            <div>
+        <div className={classes.root}>
+            <div className={classes.container}>
                 <h1>Políticas de uso</h1>
                 <p>
                     La presente Política de Privacidad establece los términos en que TEACHlearn usa y protege la información que es
@@ -23,7 +35,7 @@ const Politics= () =>{
                     El presente sitio web podrá recoger información personal como: Nombre, información de contacto como la dirección
                     de correo electrónico e informaicón demográfica. De igual manera cuando se requiera información específica.
                 </p>
-                <h3>Uso de la información recogida</h3>
+                <h2>Uso de la información recogida</h2>
                 <p>
                     El presente sitio web emplea la información con el fin de proporcionar un buen servicio. Es posible que sean
                     enviados correos electrónicos periódicamente a través del sitio como ofertas de tutorías y demás información publicitaria
@@ -34,9 +46,9 @@ const Politics= () =>{
                     TEACHlearn está altamente comprometido a cumplir con el compromiso de mantener su información segura. Se usan sistemas
                     más avanzados y se los actualiza de forma constante para asegurar que no existe ningpun tipo de acceso no autorizado
                 </p>
-                <h3>
+                <h2>
                     Enlaces a terceros
-                </h3>
+                </h2>
                 <p>
                     El presente sitio web podría contener accesos a otros sitios web que pueden ser de interés del usuario. Una vez
                     que se haga clic en los enlaces y se abandone la página, ya no se tendrá control sobre el sitio al que se redirigió
@@ -45,14 +57,14 @@ const Politics= () =>{
                     de privacidad y uso por lo cual es recomendable que el usuario los consulte y revise para confirmar que está de
                     acuerdo con aquellos términos.
                 </p>
-                <h3>
+                <h2>
                     Control de su información personal
-                </h3>
+                </h2>
                 <p>
                     Ésta empresa no venderá, cederá ni distribuirá la información personal que se recopile sin su consentimiento, salvo
                     que sea requerido por un juez ante un orden judicial.
                     TEACHlearn se reserva el derecho de modificar los términos de uso en cualquier momento
-                </p>
+                </p><br/><br/><br/>
             </div>
         </div>
     );

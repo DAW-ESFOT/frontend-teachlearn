@@ -59,12 +59,14 @@ const useStyles = makeStyles((theme) => ({
     logo: {
         display: "none",
         padding: 8,
-        maxHeight: 64,
+        maxHeight: 100,
+        maxWidth: 150,
         [theme.breakpoints.up("sm")]: {
             display: "block",
         },
         "& a img": {
             maxHeight: 45,
+            
         },
     },
     sectionDesktop: {
