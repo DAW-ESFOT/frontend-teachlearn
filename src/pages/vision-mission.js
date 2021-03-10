@@ -42,9 +42,6 @@ const Mision= () =>{
                 </TableBody>
             </Table>
         </div>
-            <footer className={styles.footer}>
-                <Footer/>
-            </footer>
         </div>
     )
 };

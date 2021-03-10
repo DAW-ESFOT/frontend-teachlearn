@@ -6,6 +6,7 @@ import Head from 'next/head';
 //import { ThemeProvider } from '@material-ui/core/styles';
 import { Container, CssBaseline, Grid, ThemeProvider } from "@material-ui/core";
 import theme from "@/styles/theme"
+import Footer from "@/components/Footer";
 //import theme from '../styles/theme';
 
 function MyApp({ Component, pageProps }) {
@@ -31,6 +32,7 @@ function MyApp({ Component, pageProps }) {
                 </Grid>
               </Grid>
             </Container>
+            <Footer/>
           </ThemeProvider>
         </AuthProvider>
     </>
