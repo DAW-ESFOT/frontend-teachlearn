@@ -46,7 +46,6 @@ const Contact= () =>{
                     </Button>
                 </div>
             </div>
-            <Footer/>
         </div>
     )
 };

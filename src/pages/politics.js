@@ -7,9 +7,6 @@ import Footer from "../components/Footer";
 const Politics= () =>{
     return(
         <div className={styles.container}>
-            <header className={styles.header}>
-                <Navigation/>
-            </header>
             <div>
                 <h1>Políticas de uso</h1>
                 <p>
@@ -57,9 +54,6 @@ const Politics= () =>{
                     TEACHlearn se reserva el derecho de modificar los términos de uso en cualquier momento
                 </p>
             </div>
-            <footer className={styles.footer}>
-                <Footer/>
-            </footer>
         </div>
     );
 };

@@ -14,20 +14,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#262626",
         color: "#FFFFFF",
         alignItems: "center",
-        padding: "25px",
+        padding:"10px",
+        fontSize:"20px"
     },
-    iconos:{
-        margin: "5px",
+    iconos: {
+        display: "-webkit-box",
     },
-    //logo: {
-       // padding: 8,
-       // [theme.breakpoints.up("sm")]: {
-       //     display: "block",
-       // },
-       // "& a img": {
-       //     maxHeight: 55,
-       // },
-    //},
 }))
 
 export default function Footer() {
@@ -36,20 +28,20 @@ export default function Footer() {
         <div className={classes.grow}>
             <footer className={classes.footer}>
                 <Container>
-                    <Grid container className={classes.grow} align="right" spacing={8} >
-                        <Box className={classes.iconos}>
-                            <a href='https://web.whatsapp.com/' target="_blank" rel="noopener noreferrer"><WhatsAppOutlined/></a>
-                            <a href='https://www.linkedin.com/' target="_blank" rel="noopener noreferrer" style={{margin:"10px"}}><LinkedinOutlined/></a>
-                            <a href='https://mail.google.com/' target="_blank" rel="noopener noreferrer"><MailOutlined/></a>
-                        </Box>
-                    </Grid>
-                    <Grid container spacing={3}>
-                        <Link href="/">
-                            <Typography variant="body2" align="center">
+                    <div className="row">
+                        <div className="col-6">
+                            <Box className={classes.iconos}  align="right">
+                                <a href='https://web.whatsapp.com/' target="_blank" rel="noopener noreferrer"><WhatsAppOutlined/></a>
+                                <a href='https://www.linkedin.com/' target="_blank" rel="noopener noreferrer" style={{margin:"10px"}}><LinkedinOutlined/></a>
+                                <a href='https://mail.google.com/' target="_blank" rel="noopener noreferrer"><MailOutlined/></a>
+                            </Box>
+                        </div>
+                        <Link href="/" aling="right">
+                            <Typography variant="body2">
                                 Copyright © TeachLearn {new Date().getFullYear()}
                             </Typography>
                         </Link>
-                    </Grid>
+                    </div>
                 </Container>
             </footer>
         </div>
