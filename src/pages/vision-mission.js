@@ -1,46 +1,51 @@
 
 
 import React from 'react';
+import styles from '../styles/vision-mision.module.css'
 import Navigation from "../components/Navigation";
-import mision from './images/misionicono.png';
-import vision from './images/misionicono.webp';
-import './styles/vision-mision.css';
+import Footer from "../components/Footer";
 
-function App() {
-    return (
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
-        <div className="App">
-            <body>
-            <div className="superior"></div>
-            <div className="contenido">
-                <h1 >Misión y Visión</h1>
-                <div className="vision">
-                    <div className="visiontext"><p>Generar, enseñar, difundir, aplicar e innovar conocimientos de nivel primario, secundario y
-                        ofimática, enfocado en las materias de matemática, física, quimica, computacion, manejo
-                        de microsoft office para el desarrollo sustentable de su modelo educativo para entornos vituales de aprendizaje
-                        a fin de garantizar los principios de educación.
-                    </p></div>
-                    <div className="visionimg"><img src={vision} className="visionicono" alt="vision" width="300" height="300"/></div>
-                </div>
-                <div className="mision" >
-                    <div className="misiontext">
-                        <p>
-                            TEACHLearn a través de un entorno de aprendizaje virtual facilita el acceso a una educación
-                            para el desarrollo y el bienestar integral, con un modelo edcativo sustentable que promueve
-                            el parendizaje y la mejora de concimientos de cada uno de sus estudiante mediante el uso de plataformas
-                            web como ZOOM.
-                        </p></div>
-                    <div className="misionimg"><img src={mision} className="misionicono" alt="mision" width="300" height="300"/></div>
-                </div>
+const Mision= () =>{
+    return(
+        <div>
+            <div><h1 style={{textAlign: 'Center'}}>MISIÓN Y VISIÓN</h1></div>
+            <div style={{marginLeft:90, marginRight:90}}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell><p>Generar, enseñar, difundir, aplicar e innovar conocimientos de nivel primario, secundario y
+                            ofimática, enfocado en las materias de matemática, física, quimica, computacion, manejo
+                            de microsoft office para el desarrollo sustentable de su modelo educativo para entornos vituales de aprendizaje
+                            a fin de garantizar los principios de educación.</p>
+                        </TableCell>
+                        <TableCell align="center"><img src="http://gadgarzareal.gob.ec/wp-content/uploads/2019/09/vision.png" height={200}/></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                        <TableRow>
+                            <TableCell align="center"><img src="https://guiaosc.org/wp-content/uploads/2018/01/misionicono.png" height={200}/></TableCell>
+                            <TableCell align="right"><p>
+                                TEACHLearn a través de un entorno de aprendizaje virtual facilita el acceso a una educación
+                                para el desarrollo y el bienestar integral, con un modelo edcativo sustentable que promueve
+                                el parendizaje y la mejora de concimientos de cada uno de sus estudiante mediante el uso de plataformas
+                                web como ZOOM.
+                            </p>
+                            </TableCell>
+                        </TableRow>
 
-            </div>
-            <div className="inferior"></div>
-            </body>
-
+                </TableBody>
+            </Table>
         </div>
-
-    );
-}
-
-export default App;
-
+            <footer className={styles.footer}>
+                <Footer/>
+            </footer>
+        </div>
+    )
+};
+export default Mision
