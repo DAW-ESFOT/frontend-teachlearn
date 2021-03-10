@@ -36,7 +36,7 @@ export default function Footer() {
         <div className={classes.grow}>
             <footer className={classes.footer}>
                 <Container>
-                    <Grid className={classes.grow} align="right" spacing={8} >
+                    <Grid container className={classes.grow} align="right" spacing={8} >
                         <Box className={classes.iconos}>
                             <a href='https://web.whatsapp.com/' target="_blank" rel="noopener noreferrer"><WhatsAppOutlined/></a>
                             <a href='https://www.linkedin.com/' target="_blank" rel="noopener noreferrer" style={{margin:"10px"}}><LinkedinOutlined/></a>

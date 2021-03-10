@@ -118,14 +118,14 @@ const Login = () => {
                     <Typography component="h1" variant="h5">
                     Inicio de Sesión
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
                         <TextField
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
                             id="email"
-                            ref={register}
+                            inputRef={register}
                             label="Correo Electrónico"
                             name="email"
                             autoComplete="email"
@@ -137,7 +137,7 @@ const Login = () => {
                             margin="normal"
                             required
                             fullWidth
-                            ref={register}
+                            inputRef={register}
                             name="password"
                             label="Contraseña"
                             type="password"
@@ -149,12 +149,12 @@ const Login = () => {
                             label="Recordar"
                         />
                         <Button
-                            type="submit"
+                            type='submit'
                             fullWidth
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onSubmit={handleSubmit(onSubmit)}
+
                         >
                             Iniciar sesión
                         </Button>
