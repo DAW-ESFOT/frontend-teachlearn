@@ -1,4 +1,4 @@
-import Users from "@/components/Users";
+//import Users from "@/components/Users";
 import Tutorials from "@/components/Tutorials";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
@@ -22,10 +22,12 @@ const Profile = () => {
     return (
         <>
             <div>{user.name}</div>
-            <div>{user.email}</div>
+            <div>{user.last_name}</div>
+            <div>{user.birthday}</div>
             <div>{user.phone}</div>
             <div>{user.role}</div>
-<Tutorials />
+            <div>{user.biography}</div>
+        <Tutorials/>
         </>
     );
 };
