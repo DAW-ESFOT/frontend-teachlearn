@@ -77,6 +77,7 @@ const Register = () => {
     const [values, setValues] = React.useState({
         amount: '',
         password: '',
+        password_confirmation: '',
         weight: '',
         weightRange: '',
         showPassword: false,
@@ -279,6 +280,18 @@ const Register = () => {
                                 <option value='ROLE_STUDENT'>Estudiante</option>
                                 <option value='ROLE_TEACHER'>Tutor</option>
                             </Select>
+                        </Grid>
+                        <Grid item xs={12} >
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="biography"
+                                inputRef={register}
+                                label="Biografia"
+                                name="biography"
+                                autoComplete="biography"
+                            />
                         </Grid>
                     </Grid>
                     <Button
