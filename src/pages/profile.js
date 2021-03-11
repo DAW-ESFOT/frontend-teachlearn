@@ -1,26 +1,35 @@
-import Comments from "@/components/Comments";
+import Users from "@/components/Users";
+import Tutorials from "@/components/Tutorials";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { useRouter } from "next/router";
 import React from "react";
 import Loading from "@/components/Loading";
 import withAuth from "@/hocs/withAuth";
+import {useAuth} from "@/lib/auth";
 
 const Profile = () => {
-    const router = useRouter();
-    const { userId } = router.query;
-    const { data, error } = useSWR(`/users/${userId}`, fetcher);
+    /*const router = useRouter();
 
-    if (error) return <div>No se pudo cargar los datos</div>;
-    if (!data) return <Loading />;
+    //const { user } = router.query;
+    const { tutorialId } = router.query;
+    const { data, error } = useSWR(`/tutorials/${tutorialId}`, fetcher);
+    console.log('data',data);*/
 
+  //  if (error) return <div>No se pudo cargar los datos</div>;
+  //  if (!data) return <Loading />;
+    const {user} = useAuth();
     return (
-        <div>
-            <h1>{data.name}</h1>
-            <p>{data.lastname}</p>
-            <p>{data.email}</p>
-        </div>
+        <>
+            <div>{user.name}</div>
+            <div>{user.email}</div>
+            <div>{user.phone}</div>
+            <div>{user.role}</div>
+<Tutorials />
+        </>
     );
 };
-
 export default withAuth(Profile);
+//<h1>{data.name}</h1>
+//<p>{data.last_name}</p>
+//<p>{data.email}</p>
