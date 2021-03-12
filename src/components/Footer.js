@@ -30,17 +30,19 @@ export default function Footer() {
                 <Container>
                     <div className="row">
                         <div className="col-6">
-                            <Box className={classes.iconos}  align="right">
+                            <Box className={classes.iconos}  align="right" >
                                 <a href='https://web.whatsapp.com/' target="_blank" rel="noopener noreferrer"><WhatsAppOutlined/></a>
                                 <a href='https://www.linkedin.com/' target="_blank" rel="noopener noreferrer" style={{margin:"10px"}}><LinkedinOutlined/></a>
                                 <a href='https://mail.google.com/' target="_blank" rel="noopener noreferrer"><MailOutlined/></a>
                             </Box>
                         </div>
-                        <Link href="/" aling="right">
-                            <Typography variant="body2">
-                                Copyright © TeachLearn {new Date().getFullYear()}
-                            </Typography>
-                        </Link>
+                        <div className="col-6">
+                            <Link href="/" aling="right">
+                                <Typography variant="body2">
+                                    Copyright © TeachLearn {new Date().getFullYear()}
+                                </Typography>
+                            </Link>
+                        </div>
                     </div>
                 </Container>
             </footer>

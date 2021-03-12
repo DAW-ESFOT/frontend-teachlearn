@@ -7,6 +7,7 @@ import React from "react";
 import Loading from "@/components/Loading";
 import withAuth from "@/hocs/withAuth";
 import {useAuth} from "@/lib/auth";
+import Subject from "@/components/Subject";
 
 const Profile = () => {
     /*const router = useRouter();
