@@ -402,7 +402,7 @@ const Home=({comments}) => {
                       </Grid>
                       <Grid item xs>
                           <Paper className={classes.paper}>Imagen 4</Paper>
-                      </Grid>
+                      </Grid><br/><br/><br/>
                 </Grid>                                                      
         </Grid>
     

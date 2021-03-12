@@ -4,7 +4,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Link from "next/link";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import { Link as MuiLink } from "@material-ui/core";
+import { Link as MuiLink, Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -58,14 +58,15 @@ const useStyles = makeStyles((theme) => ({
     },
     logo: {
         display: "none",
-        padding: 8,
+        padding: 20,
         maxHeight: 100,
-        maxWidth: 150,
+        maxWidth: 300,
         [theme.breakpoints.up("sm")]: {
             display: "block",
         },
         "& a img": {
-            maxHeight: 45,
+            top:10,
+            maxHeight: 75,
             
         },
     },
@@ -197,15 +198,15 @@ export default function MainMenu(props) {
                             <Link href={Routes.HOME} passHref>
                                 <MuiLink>
                                     <Image
-                                        src="/teachlearn.png"
+                                        src="/teachlearn.svg"
                                         alt="Teachlearn"
-                                        width={100}
-                                        height={50}
+                                        width={500}
+                                        height={300}
                                     />
                                 </MuiLink>
                             </Link>
                         </Box>
-
+                        <Typography styles={{fontSize:20}}><Link href={Routes.HOME}>TEACHlearn</Link></Typography>
                         <div className={classes.grow} />
 
                         <div className={classes.sectionDesktop}>
