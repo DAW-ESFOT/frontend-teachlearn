@@ -8,6 +8,7 @@ const publicRoutes = {
     // USERS: "/usuarios",
     // USERS_ID: `/usuario/:id`,
     ABOUT: "/about",
+    PROFILE: '/profile',
 };
 
 const privateRoutes = {
