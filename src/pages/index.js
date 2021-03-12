@@ -139,10 +139,6 @@ const useStyles = makeStyles((theme) => ({
       "-webkit-line-clamp": 2,
       "-webkit-box-orient": "vertical",
     },
-    root3: {
-      maxWidth: 345,
-      marginBottom: 40,
-    },
   }));
 
   function getSteps() {
