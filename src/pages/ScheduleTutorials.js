@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Button from '@material-ui/core/Button';
+import Tutorials from "@/components/Tutorials";
 
 
 
@@ -31,18 +32,12 @@ import Button from '@material-ui/core/Button';
 
                     </AppBar>
                     <LinkTab value={value} index={0}>
-                            <Button
-                                variant="contained"
-                                color="primary">
-                                materia primaria
-                            </Button>
+
+                                <Tutorials/>
+
                     </LinkTab>
                     <LinkTab value={value} index={1}>
-                        <Button
-                            variant="contained"
-                            color="primary">
-                            materia secundaria
-                        </Button>
+
                     </LinkTab>
                     <LinkTab value={value} index={2}>
                         <Button
