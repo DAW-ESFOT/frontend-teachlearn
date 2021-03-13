@@ -4,9 +4,10 @@ import React from "react";
 import withAuth from "@/hocs/withAuth";
 import {useAuth} from "@/lib/auth";
 import { makeStyles } from '@material-ui/core/styles';
-import {Grid,Typography,Avatar} from '@material-ui/core';
+import {Grid,Typography,Avatar, Link} from '@material-ui/core';
 import { deepOrange } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
+import Routes from "src/constants/routes";
 
 const Profile = () => {
 
@@ -46,8 +47,8 @@ const Profile = () => {
                     <Typography varian='h6'>Biografía: {user.biography}</Typography>                         
                 </Grid>
                 <Grid item xs={3} className={classes.buttonss}>
-                    <Button variant="contained" color="primary" disableElevation>Editar mi perfil</Button><br /><br />
-                    <Button variant="contained" color="primary" disableElevation>Reservar una tutoría</Button>
+                    <Link href={Routes.EDITPROFILE}><Button variant="contained" color="primary" disableElevation>Editar mi perfil</Button></Link><br /><br />
+                    <Link href={Routes.SCHEDULE}><Button variant="contained" color="primary" disableElevation>Reservar una tutoría</Button></Link>
                 </Grid>
                 <Tutorials/><br /><br /><br />
             </Grid>

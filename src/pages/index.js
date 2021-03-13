@@ -8,15 +8,15 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
 import CommentIcon from '@material-ui/icons/Comment';
-import StepContent from '@material-ui/core/StepContent';
 import {
   Card,
+  Step,
+  Stepper,
+  StepContent,
   CardActionArea,
   CardContent,
+  StepLabel,
 } from "@material-ui/core";
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
@@ -24,28 +24,23 @@ import { autoPlay } from 'react-swipeable-views-utils';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
-    {
-      label: 'San Francisco – Oakland Bay Bridge, United States',
+    {      
       imgPath:
         'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
     },
-    {
-      label: 'Bird',
+    {    
       imgPath:
         'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
     },
-    {
-      label: 'Bali, Indonesia',
+    {      
       imgPath:
         'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
     },
-    {
-      label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
+    {      
       imgPath:
         'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
     },
-    {
-      label: 'Goč, Serbia',
+    {      
       imgPath:
         'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
     },
@@ -93,17 +88,22 @@ const useStyles = makeStyles((theme) => ({
       overflow: 'hidden',
       width: '100%',
     },
+    footimg:{
+      backgroundColor:'#B4B29E',
+    },
     funcstudent:
     {
       height: 300,
       width: 1200,
       flexGrow: 1,
+      backgroundColor:'#B4B29E',
     },
     functeacher:
     {
       height: 300,
       width: 1200,
       flexGrow: 1,
+      backgroundColor:'#B4B29E',
     },
     instfuc:
     {     
@@ -121,7 +121,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'right',
     },
     root2: {
-      width: '100%',
+      width: '100%',      
+    },
+    Continst:{
+      backgroundColor:'#B4B29E',
     },
     button: {
       marginTop: theme.spacing(1),
@@ -132,6 +135,7 @@ const useStyles = makeStyles((theme) => ({
     },
     resetContainer: {
       padding: theme.spacing(3),
+      backgroundColor:'#B4B29E',
     },
     body: {
       overflow: "hidden",
@@ -177,7 +181,7 @@ const useStyles = makeStyles((theme) => ({
       default:
         return 'Unknown step';
     }
-  }
+  };
 
 const Home=({comments}) => {
   const classes = useStyles();
@@ -195,9 +199,6 @@ const Home=({comments}) => {
 
   const handleBack0 = () => {
     setActiveStep0((prevActiveStep0) => prevActiveStep0 - 1);
-  };
-  const handleReset0 = () => {
-    setActiveStep0(0);
   };
 
   const handleNext = () => {
@@ -229,10 +230,7 @@ const Home=({comments}) => {
   
     return (
         <>
-          <div className={classes.root}>                
-            <Paper square elevation={0} className={classes.header}>
-              <Typography>{tutorialSteps[activeStep0].label}</Typography>
-            </Paper>
+          <div className={classes.root}>                            
             <AutoPlaySwipeableViews
               axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
               index={activeStep0}
@@ -249,6 +247,7 @@ const Home=({comments}) => {
             </AutoPlaySwipeableViews>
             <MobileStepper
               steps={maxSteps}
+              className={classes.footimg}
               position="static"
               variant="text"
               activeStep={activeStep0}
@@ -271,7 +270,7 @@ const Home=({comments}) => {
                   <CastForEducationIcon style={{ fontSize: 40 }}/>
                     ¿Cómo funciona para alumnos?
                 </h1>
-            <Stepper activeStep={activeStep} orientation="vertical">
+            <Stepper activeStep={activeStep} className={classes.Continst} orientation="vertical">
               {steps.map((label, index) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
@@ -314,7 +313,7 @@ const Home=({comments}) => {
                   <CastForEducationIcon style={{ fontSize: 40 }}/>
                     ¿Cómo funciona para tutores?
                 </h1>
-            <Stepper activeStep2={activeStep2} orientation="vertical">
+            <Stepper activeStep2={activeStep2} className={classes.Continst} orientation="vertical">
               {steps2.map((label, index) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
