@@ -15,7 +15,7 @@ class MyDocument extends Document {
 
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swa"
           />
         </Head>
         <body>

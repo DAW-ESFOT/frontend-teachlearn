@@ -108,7 +108,7 @@ const IconsMenu = () => {
                 >
                     <AccountCircle />
                 </IconButton>
-                <p>Profile</p>
+                <p><Link href={Routes.PROFILE}>Perfi</Link></p>
             </MenuItem>
         </Menu>
     );

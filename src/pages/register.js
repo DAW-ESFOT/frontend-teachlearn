@@ -24,6 +24,7 @@ import clsx from 'clsx';
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {MenuItem, NativeSelect, Select} from "@material-ui/core";
+import Routes from "../constants/routes";
 
 
 const schema = yup.object().shape({
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'center',        
     },
     avatar: {
         margin: theme.spacing(1),
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     },
     textField: {
         width: "-webkit-fill-available",
-    },
+    },    
 }));
 
 
@@ -121,196 +122,200 @@ const Register = () => {
     };
 
     return (
+        <>
 
-        <Container component="main" maxWidth="xs" className={styles.container}>
-            <CssBaseline/>
-            <div className={classes.paper}>
-                <Grid container style={{paddingTop: "30px"}}>
-                    <Grid item xs={6}>
-                        <Typography>¿Ya tienes una cuenta?</Typography>
+            <Container component="main" maxWidth="xs" className={styles.container}>
+                <CssBaseline/>
+                <div className={classes.paper}>
+                    <Grid container style={{paddingTop: "30px"}}>
+                        <Grid item xs={6}>
+                            <Typography>¿Ya tienes una cuenta?</Typography>
+                        </Grid>
+                        <Grid item xs={6} style={{textAlign: "end"}}>
+                            <Link href="/login" variant="body2" color="secondary">
+                                {"Inicia Sesión"}
+                            </Link>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Divider color="secondary"/>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={6} style={{textAlign: "end"}}>
-                        <Link href="/login" variant="body2" color="secondary">
-                            {"Inicia Sesión"}
-                        </Link>
+                    <Grid style={{paddingTop: "30px"}}>
+                        <Typography component="h1" variant="h5">
+                            Registro
+                        </Typography>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Divider color="secondary"/>
-                    </Grid>
-                </Grid>
-                <Grid style={{paddingTop: "30px"}}>
-                    <Typography component="h1" variant="h5">
-                        Registro
+                    <form className={classes.form} noValidate onSubmit={handleSubmit(onSubmit)}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    autoComplete="name"
+                                    name="name"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="name"
+                                    inputRef={register}
+                                    label="Nombre"
+                                    autoFocus
+                                />
+                                <Typography color="primary">{errors.name?.message}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="last_name"
+                                    inputRef={register}
+                                    label="Apellido"
+                                    name="last_name"
+                                    autoComplete="lname"
+                                />
+                                <Typography color="primary">{errors.last_name?.message}</Typography>
+                            </Grid>
+                            <Grid item xs={12} >
+                                <TextField
+                                    variant="outlined"
+                                    type="date"
+                                    required
+                                    fullWidth
+                                    id="birthday"
+                                    label=""
+                                    name="birthday"
+                                    autoComplete="lname"
+                                    inputRef={register}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    inputRef={register}
+                                    label="Correo"
+                                    name="email"
+                                    autoComplete="email"
+                                />
+                                <Typography color="primary">{errors.email?.message}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    type="number"
+                                    id="phone"
+                                    inputRef={register}
+                                    label="Teléfono"
+                                    name="phone"
+                                    autoComplete="phone"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <FormControl className={clsx(classes.textField)} variant="outlined">
+                                    <InputLabel htmlFor="password">Contraseña *</InputLabel>
+                                    <OutlinedInput
+                                        id="password"
+                                        name="password"
+                                        inputRef={register}
+                                        type={values.showPassword ? 'text' : 'password'}
+                                        value={values.password}
+                                        onChange={handleChange('password')}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                                    edge="end"
+                                                >
+                                                    {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        }
+                                        labelWidth={93}
+                                    />
+                                </FormControl>
+                                <Typography color="primary">{errors.password?.message}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <FormControl className={clsx(classes.textField)} variant="outlined">
+                                    <InputLabel htmlFor="password_confirmation">Confirmar Contraseña *</InputLabel>
+                                    <OutlinedInput
+                                        id="password_confirmation"
+                                        name="password_confirmation"
+                                        inputRef={register}
+                                        type={values.showPassword ? 'text' : 'password'}
+                                        value={values.password_confirmation}
+                                        onChange={handleChange('password_confirmation')}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                                    edge="end"
+                                                >
+                                                    {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        }
+                                        labelWidth={175}
+                                    />
+                                </FormControl>
+                                <Typography color="primary">{errors.password_confirmation?.message}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Select
+                                    native
+                                    name="role"
+                                    id="role"
+                                    inputRef={register}
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                >
+                                    <option arial-label="None"></option>
+                                    <option>Seleccione....</option>
+                                    <option value='ROLE_STUDENT'>Estudiante</option>
+                                    <option value='ROLE_TEACHER'>Tutor</option>
+                                </Select>
+                            </Grid>
+                            <Grid item xs={12} >
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="biography"
+                                    inputRef={register}
+                                    label="Biografia"
+                                    name="biography"
+                                    autoComplete="biography"
+                                />
+                            </Grid>
+                        </Grid>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            Registrar
+                        </Button>
+                    </form>
+                </div>
+                <Box mt={5} style={{paddingBottom: "30px"}}>
+                    <Typography variant="body2" color="#00000" align="center">
+                        Al registrarse acepta todos los Términos de uso y 
+                        <Link href={Routes.POLITICS}> Políticas de Privacidad</Link>
                     </Typography>
-                </Grid>
-                <form className={classes.form} noValidate onSubmit={handleSubmit(onSubmit)}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                autoComplete="name"
-                                name="name"
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="name"
-                                inputRef={register}
-                                label="Nombre"
-                                autoFocus
-                            />
-                            <Typography color="primary">{errors.name?.message}</Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="last_name"
-                                inputRef={register}
-                                label="Apellido"
-                                name="last_name"
-                                autoComplete="lname"
-                            />
-                            <Typography color="primary">{errors.last_name?.message}</Typography>
-                        </Grid>
-                        <Grid item xs={12} >
-                            <TextField
-                                variant="outlined"
-                                type="date"
-                                required
-                                fullWidth
-                                id="birthday"
-                                label=""
-                                name="birthday"
-                                autoComplete="lname"
-                                inputRef={register}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="email"
-                                inputRef={register}
-                                label="Correo"
-                                name="email"
-                                autoComplete="email"
-                            />
-                            <Typography color="primary">{errors.email?.message}</Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                type="number"
-                                id="phone"
-                                inputRef={register}
-                                label="Teléfono"
-                                name="phone"
-                                autoComplete="phone"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControl className={clsx(classes.textField)} variant="outlined">
-                                <InputLabel htmlFor="password">Contraseña *</InputLabel>
-                                <OutlinedInput
-                                    id="password"
-                                    name="password"
-                                    inputRef={register}
-                                    type={values.showPassword ? 'text' : 'password'}
-                                    value={values.password}
-                                    onChange={handleChange('password')}
-                                    endAdornment={
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                                edge="end"
-                                            >
-                                                {values.showPassword ? <Visibility/> : <VisibilityOff/>}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    }
-                                    labelWidth={93}
-                                />
-                            </FormControl>
-                            <Typography color="primary">{errors.password?.message}</Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControl className={clsx(classes.textField)} variant="outlined">
-                                <InputLabel htmlFor="password_confirmation">Confirmar Contraseña *</InputLabel>
-                                <OutlinedInput
-                                    id="password_confirmation"
-                                    name="password_confirmation"
-                                    inputRef={register}
-                                    type={values.showPassword ? 'text' : 'password'}
-                                    value={values.password_confirmation}
-                                    onChange={handleChange('password_confirmation')}
-                                    endAdornment={
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                                edge="end"
-                                            >
-                                                {values.showPassword ? <Visibility/> : <VisibilityOff/>}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    }
-                                    labelWidth={175}
-                                />
-                            </FormControl>
-                            <Typography color="primary">{errors.password_confirmation?.message}</Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Select
-                                native
-                                name="role"
-                                id="role"
-                                inputRef={register}
-                                variant="outlined"
-                                required
-                                fullWidth
-                            >
-                                <option arial-label="None"></option>
-                                <option>Seleccione....</option>
-                                <option value='ROLE_STUDENT'>Estudiante</option>
-                                <option value='ROLE_TEACHER'>Tutor</option>
-                            </Select>
-                        </Grid>
-                        <Grid item xs={12} >
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="biography"
-                                inputRef={register}
-                                label="Biografia"
-                                name="biography"
-                                autoComplete="biography"
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Registrar
-                    </Button>
-                </form>
-            </div>
-            <Box mt={5} style={{paddingBottom: "30px"}}>
-                <Typography variant="body2" color="textSecondary" align="center">
-                    Al registrarse acepta todos los Términos de uso y Políticas de Privacidad
-                </Typography>
-            </Box>
-        </Container>
+                </Box>
+            </Container>
+            <br /><br/>
+        </>
 
     );
 };

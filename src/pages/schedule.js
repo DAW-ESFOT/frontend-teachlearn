@@ -4,8 +4,17 @@ import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Routes from 'src/constants/routes';
+import Link from '@material-ui/core/Link';
 
-
+const useStyles = makeStyles((theme) => (
+    {
+        root: {
+            textAlign:'center',
+        },
+       
+    }));
 
     const Schedule= () =>{
 
@@ -14,9 +23,10 @@ import Button from '@material-ui/core/Button';
         console.warn(val)
         setValue(val)
     }
+    const classes=useStyles();
 
     return(
-        <div>
+        <div className={classes.root}>
             <div><h1 style={{textAlign:'center'}}>AGENDAR UNA TUTORIA</h1></div>
             <div><h2>Escoger una materia</h2>
 
@@ -59,7 +69,7 @@ import Button from '@material-ui/core/Button';
                 <form  noValidate autoComplete="off">
                     <TextField
                         id="outlined-name"
-                        label="text"
+                        label="Tema en especial sobre la materia"
                         margin="normal"
                         variant="outlined"
                     />
@@ -70,7 +80,7 @@ import Button from '@material-ui/core/Button';
                 <form  noValidate>
                     <TextField
                         id="datetime-local"
-                        label="Next appointment"
+                        label="Escoja el horario"
                         type="datetime-local"
                         defaultValue="2017-05-24T10:30"
 
@@ -79,7 +89,12 @@ import Button from '@material-ui/core/Button';
                         }}
                     />
                 </form>
-            </div>
+            </div><br /><br /><br />
+            <div >
+                <Button variant="contained" color="primary">Reservar</Button><br /><br />
+                <Link href={Routes.PROFILE}><Button variant="contained" color="primary">Regresar</Button></Link>
+            </div>            
+            <br /><br /><br />
         </div>
     );
 } ;export default Schedule

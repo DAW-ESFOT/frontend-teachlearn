@@ -107,76 +107,79 @@ const Login = () => {
         const classes = useStyles();
     
         return (
-            <Grid container component="main" className={classes.root}>
-                <CssBaseline />
-                <Grid item xs={false} sm={4} md={7} className={classes.image} />
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-                <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                    Inicio de Sesión
-                    </Typography>
-                    <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            inputRef={register}
-                            label="Correo Electrónico"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <p>{errors.email?.message}</p>
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            inputRef={register}
-                            name="password"
-                            label="Contraseña"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Recordar"
-                        />
-                        <Button
-                            type='submit'
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
+            <>
+                <Grid container component="main" className={classes.root}>
+                    <CssBaseline />
+                    <Grid item xs={false} sm={4} md={7} className={classes.image} />
+                    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                    <div className={classes.paper}>
+                        <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                        Inicio de Sesión
+                        </Typography>
+                        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                inputRef={register}
+                                label="Correo Electrónico"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus
+                            />
+                            <p>{errors.email?.message}</p>
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                inputRef={register}
+                                name="password"
+                                label="Contraseña"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                            />
+                            <FormControlLabel
+                                control={<Checkbox value="remember" color="primary" />}
+                                label="Recordar"
+                            />
+                            <Button
+                                type='submit'
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
 
-                        >
-                            Iniciar sesión
-                        </Button>
-                        <Grid container>
-                            <Grid item xs>
-                            <Link href="#" variant="body2">
-                                ¿Olvidó la contraseña?
-                            </Link>
+                            >
+                                Iniciar sesión
+                            </Button>
+                            <Grid container>
+                                <Grid item xs>
+                                <Link href="#" variant="body2">
+                                    ¿Olvidó la contraseña?
+                                </Link>
+                                </Grid>
+                                <Grid item>
+                                <Link href="../register" variant="body2">
+                                    {"¿No tiene una cuenta? Registrese"}
+                                </Link>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                            <Link href="../register" variant="body2">
-                                {"¿No tiene una cuenta? Registrese"}
-                            </Link>
-                            </Grid>
-                        </Grid>
-                        <Box mt={5}>
-                            <Copyright />
-                        </Box>
-                    </form>
-                </div>
+                            <Box mt={5}>
+                                <Copyright />
+                            </Box>
+                        </form>
+                    </div>
+                    </Grid>
                 </Grid>
-            </Grid>
-            );
-    };
+                <br /><br /><br />
+        </>
+    );
+};
 export default withoutAuth(Login);
