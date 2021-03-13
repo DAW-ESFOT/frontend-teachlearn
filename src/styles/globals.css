@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: 'Dosis', sans-serif;
   background-image: url('../../public/backgrund.jpg');
+  background-size: cover;
 }
 
 a {
@@ -17,7 +18,7 @@ a {
 .container{
   padding: 15px;
   background-color: #001529;
-  color: #C4C0B4;
+  color: white;
   font-size: 13px;
   line-height: 0;
 }
