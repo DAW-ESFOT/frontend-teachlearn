@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Dosis', sans-serif;
+  background-image: url('../../public/backgrund.jpg');
 }
 
 a {
@@ -17,7 +17,7 @@ a {
 .container{
   padding: 15px;
   background-color: #001529;
-  color: white;
+  color: #C4C0B4;
   font-size: 13px;
   line-height: 0;
 }
