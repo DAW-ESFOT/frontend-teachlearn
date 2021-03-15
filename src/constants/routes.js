@@ -8,7 +8,7 @@ const publicRoutes = {
     // USERS: "/usuarios",
     // USERS_ID: `/usuario/:id`,
     ABOUT: "/about",
-    SUBJECTS:'/subjects',
+    SUBJECTS:'/materias',
 };
 
 const privateRoutes = {
@@ -16,6 +16,7 @@ const privateRoutes = {
     PROFILE: '/profile',
     SCHEDULE: '/schedule',
     EDITPROFILE: '/editprofile',
+    ADDTUTORIA:'/addTutorial'
     // ARTICLE_ID: "/articulo/:id",
 };
 
