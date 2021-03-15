@@ -8,6 +8,41 @@ import {Grid,Typography,Avatar, Link} from '@material-ui/core';
 import { deepOrange } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import Routes from "src/constants/routes";
+import { withStyles } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+
+const StyledMenu = withStyles({
+    paper: {
+      border: '1px solid #d3d4d5',
+    },
+  })((props) => (
+    <Menu
+      elevation={0}
+      getContentAnchorEl={null}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      {...props}
+    />
+  ));
+  
+  const StyledMenuItem = withStyles((theme) => ({
+    root: {
+      '&:focus': {
+        backgroundColor: theme.palette.primary.main,
+        '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+          color: theme.palette.common.white,
+        },
+      },
+    },
+  }))(MenuItem);
 
 const Profile = () => {
 
@@ -20,7 +55,7 @@ const Profile = () => {
         },
         improfile: {
           color: theme.palette.getContrastText(deepOrange[500]),
-          backgroundColor: deepOrange[500],
+          backgroundColor: '#000000',
           width:150,
           height:150,
         },      
@@ -31,6 +66,16 @@ const Profile = () => {
 
     const {user} = useAuth();
     const classes = useStyles();
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <>
             <Grid container spacing={3}>
@@ -40,15 +85,42 @@ const Profile = () => {
                     </div>
                 </Grid>
                 <Grid item xs={6}>
-                    <Typography variant='h4'>Información:</Typography>
-                    <Typography varian='h6'>Nombre: {user.name}</Typography><Typography varian='h6'>Apellido: {user.last_name}</Typography>                                                        
-                    <Typography varian='h6'>Cumpleaños: {user.birthday}</Typography>
-                    <Typography varian='h6'>Celular: {user.phone}</Typography>                
-                    <Typography varian='h6'>Biografía: {user.biography}</Typography>                         
+                    <Typography variant='h4'>Información:</Typography><br /><br />
+                    <Typography varian='h6'><strong>Nombre:</strong> {user.name}</Typography><br />
+                    <Typography varian='h6'><strong>Apellido:</strong> {user.last_name}</Typography><br />
+                    <Typography varian='h6'><strong>Cumpleaños:</strong> {user.birthday}</Typography><br />
+                    <Typography varian='h6'><strong>Celular:</strong> {user.phone}</Typography><br />
+                    <Typography varian='h6'><strong>Biografía:</strong> {user.biography}</Typography><br />
                 </Grid>
                 <Grid item xs={3} className={classes.buttonss}>
-                    <Link href={Routes.EDITPROFILE}><Button variant="contained" color="primary" disableElevation>Editar mi perfil</Button></Link><br /><br />
-                    <Link href={Routes.SCHEDULE}><Button variant="contained" color="primary" disableElevation>Reservar una tutoría</Button></Link>
+                    <div>
+                        <Button
+                            aria-controls="customized-menu"
+                            aria-haspopup="true"
+                            variant="contained"
+                            color="primary"
+                            onClick={handleClick}
+                        >
+                            Opciones
+                        </Button>
+                        <StyledMenu
+                            id="customized-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <StyledMenuItem>
+                                <Link href={Routes.SCHEDULE}><Button>Registrar Tutoría</Button></Link>
+                            </StyledMenuItem>
+                            <StyledMenuItem>
+                                <Link href={Routes.EDITPROFILE}><Button>Editar mi perfil</Button></Link>                       
+                            </StyledMenuItem>
+                            <StyledMenuItem>
+                                <Link href={Routes.SCHEDULE}><Button>Registrar Tutoría</Button></Link>
+                            </StyledMenuItem>
+                        </StyledMenu>
+                    </div>
                 </Grid>
                 <Tutorials/><br /><br /><br />
             </Grid>
