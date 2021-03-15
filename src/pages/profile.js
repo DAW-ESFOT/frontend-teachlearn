@@ -48,7 +48,7 @@ const Profile = () => {
                 </Grid>
                 <Grid item xs={3} className={classes.buttonss}>
                     <Link href={Routes.EDITPROFILE}><Button variant="contained" color="primary" disableElevation>Editar mi perfil</Button></Link><br /><br />
-                    <Link href={Routes.SCHEDULE}><Button variant="contained" color="primary" disableElevation>Reservar una tutoría</Button></Link>
+                    <Link href={Routes.ADDTUTORIA}><Button variant="contained" color="primary" disableElevation>Reservar una tutoría</Button></Link>
                 </Grid>
                 <Tutorials/><br /><br /><br />
             </Grid>
