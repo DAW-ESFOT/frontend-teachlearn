@@ -103,8 +103,11 @@ const Home=({comments}) => {
           </Grid> 
           </div>
           <div className={classes.root4}>
-              <Link href={Routes.SCHEDULE}><Button variant="contained" color="secondary">Registrar una tutoría</Button></Link>
-          </div><br /><br />
+              <Link href={Routes.LOGIN}><Button variant="contained" color="secondary">Registrar una tutoría</Button></Link>
+          </div><br />
+            <div className={classes.root4}>
+                <Link href={Routes.SUBJECTS}><Button variant="contained" color="secondary">Materias en Teachlearn</Button></Link>
+            </div><br /><br />
           <Grid className={classes.root1}>                          
               <Paper className={classes.paper}>
                 Somos JEGY una empresa desarrolladora de software que se inició como un grupo de amigos estudiantes de la carrera 
