@@ -16,7 +16,8 @@ const privateRoutes = {
     PROFILE: '/profile',
     SCHEDULE: '/schedule',
     EDITPROFILE: '/editprofile',
-    ADDTUTORIA:'/addTutorial'
+    ADDTUTORIA:'/addTutorial',
+    ADDSUBJECT:'/addSubject',
     // ARTICLE_ID: "/articulo/:id",
 };
 
