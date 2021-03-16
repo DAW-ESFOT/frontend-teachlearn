@@ -32,6 +32,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
+import Routes from "../constants/routes";
+import Link from "@material-ui/core/Link";
+import styles from "@/styles/Login.module.css";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Container from "@material-ui/core/Container";
 //import { Alert, AlertTitle } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,8 +44,13 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     paper: {
-        height: 140,
-        width: 100,
+        margin:'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor:'#f9f9f9',
+        padding:20,
+        borderRadius:5,
     },
     control: {
         padding: theme.spacing(2),
@@ -126,7 +136,7 @@ const AddTutorial = (props) => {
 
     return (
         <>
-            <div>
+            <div className={classes.paper}>
                 <form
                     className={classes.root}
                     noValidate
@@ -271,9 +281,9 @@ const AddTutorial = (props) => {
                                 Crear
                             </Button>
                         </Grid>
-                        <Grid xs={6} spacing={2}>
-                            <Button onClick={props.onCancel} variant="contained">
-                                Cancelar
+                        <Grid xs={6} spacing={2} align="right">
+                            <Button onClick={props.onCancel} variant="contained" >
+                                <Link href={Routes.PROFILE}>Cancelar</Link>
                             </Button>
                         </Grid>
                     </Grid>

@@ -6,6 +6,7 @@ import withAuth from "@/hocs/withAuth";
 import {withStyles, makeStyles} from "@material-ui/core/styles";
 import { Button, Icon, InputBase, TextField } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+
 import {useAuth} from "@/lib/auth";
 import {useForm} from "react-hook-form";
 import api from "@/lib/api";
@@ -42,11 +43,13 @@ const useStyles = makeStyles((theme) => ({
 
 const EditUser = (props) => {
 
+
     const {user} = useAuth();
     const classes = useStyles();
     const {data, error} = useSWR(`/users/`+ user.id, fetcher);
     console.log("data", data)
     const { register, handleSubmit, control, errors } = useForm();
+
     const [state, setState] = useState("");
 
     if (error) return <div>No se pueden cargar los datos del usuario a modificar</div>;
@@ -55,6 +58,7 @@ const EditUser = (props) => {
     const handleChange = (event) => {
         setState(event.target.value);
     };
+
 
     const onSubmit = async (data) => {
         console.log("data", data);
@@ -85,6 +89,7 @@ const EditUser = (props) => {
 
     console.log("Id del usuario", user.id);
 
+
     return (
         <>
             <Grid
@@ -93,10 +98,12 @@ const EditUser = (props) => {
                 justify="space-between"
                 alignItems="flex-start"
             >
+
                 <h2>Edicion del usuario {data.name}</h2>
 
             </Grid>
             <form className={classes.root} autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <p>Nombre:</p>
@@ -104,7 +111,9 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
+
                             inputRef={register}
+
                             defaultValue={data.name}
                             variant="outlined"
                         />
@@ -115,7 +124,9 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
+
                             inputRef={register}
+
                             defaultValue={data.last_name}
                             variant="outlined"
                         />
@@ -126,7 +137,9 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
+
                             inputRef={register}
+
                             defaultValue={data.phone}
                             variant="outlined"
                         />
@@ -137,7 +150,9 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
+
                             inputRef={register}
+
                             defaultValue={data.biography}
                             variant="outlined"
                         />

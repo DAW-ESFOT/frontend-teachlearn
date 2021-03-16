@@ -88,6 +88,7 @@ const Profile = () => {
                     <Typography variant='h4'>Información:</Typography><br /><br />
                     <Typography varian='h6'><strong>Nombre:</strong> {user.name}</Typography><br />
                     <Typography varian='h6'><strong>Apellido:</strong> {user.last_name}</Typography><br />
+                    <Typography varian='h6'><strong>Correo electronico:</strong> {user.email}</Typography><br />
                     <Typography varian='h6'><strong>Cumpleaños:</strong> {user.birthday}</Typography><br />
                     <Typography varian='h6'><strong>Celular:</strong> {user.phone}</Typography><br />
                     <Typography varian='h6'><strong>Biografía:</strong> {user.biography}</Typography><br />
@@ -122,7 +123,7 @@ const Profile = () => {
                                 <Link href={Routes.EDITPROFILE}><Button>Editar mi perfil</Button></Link>                       
                             </StyledMenuItem>
                             <StyledMenuItem>
-                                <Link href={Routes.SCHEDULE}><Button>Registrar Tutoría</Button></Link>
+                                <Link href={Routes.ADDTUTORIA}><Button>Registrar Tutoría</Button></Link>
                             </StyledMenuItem>
                             <StyledMenuItem>
                                 <Modals/>
