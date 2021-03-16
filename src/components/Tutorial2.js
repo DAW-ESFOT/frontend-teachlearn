@@ -5,21 +5,8 @@ import Loading from "@/components/Loading";
 import withAuth from "@/hocs/withAuth";
 import {withStyles, makeStyles} from "@material-ui/core/styles";
 import {Dialog, DialogContent, FormControlLabel, FormHelperText, FormLabel, RadioGroup} from '@material-ui/core';
-import {
-    Paper,
-    TableRow,
-    TableHead,
-    TableContainer,
-    TableCell,
-    TableBody,
-    Table,
-    TablePagination,
-    IconButton,
-} from "@material-ui/core";
-import BorderColorIcon from '@material-ui/icons/BorderColor';
-//import EditComplaint from "@/components/EditComplaint";
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
+import {Paper,TableRow,TableHead,TableContainer,TableCell,TableBody,Table,TablePagination,IconButton,} from "@material-ui/core";
+import api from "@/lib/api";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -49,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Tutorials = ({ tutorialId }) => {
+const Tutorial2 = ({ tutorialId }) => {
     const classes = useStyles();
-    const {data, error} = useSWR(`/my-tutorials`, fetcher);
+    const {data, error} = api.get(`/tutorials`);
 
 
     console.log("data Complaints", data);
@@ -80,8 +67,8 @@ const Tutorials = ({ tutorialId }) => {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {data.data.map((tutorial) => (
-
+                                        {data.data.filter(tutorial => tutorial.teacher_id == null )
+                                            .map((tutorial) => (
                                             <StyledTableRow key={tutorial.id}>
                                                 <StyledTableCell align="justify">
                                                     {tutorial.date}
@@ -95,7 +82,6 @@ const Tutorials = ({ tutorialId }) => {
                                                 <StyledTableCell align="justify">
                                                     {tutorial.observation}
                                                 </StyledTableCell>
-
                                                 <StyledTableCell align="justify">
                                                     {tutorial.student}
                                                 </StyledTableCell>
@@ -115,4 +101,4 @@ const Tutorials = ({ tutorialId }) => {
         </>
     );
 };
-export default withAuth(Tutorials);
+export default withAuth(Tutorial2);

@@ -81,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 const schema = yup.object().shape({});
 
 const AddTutorial = (props) => {
+    const {user}= useAuth();
     const classes = useStyles();
     const { register, handleSubmit, control, errors } = useForm();
     const [name, setName] = useState("");
@@ -115,8 +116,12 @@ const AddTutorial = (props) => {
         }
     };
 
-    const handleImage=(image)=>{
+    const handleImage = async (image)=>{
         setImage(image)
+        const tutorialData = { ...data, teacher_id: null };
+        const response = await api.put("/tutorials/{tutorial}/image", tutorialData);
+        console.log("Data Tutorial", response);
+        return response;
     }
 
     return (
@@ -192,9 +197,11 @@ const AddTutorial = (props) => {
                                 fullWidth
                                 type="number"
                                 id="price"
+                                defaultValue={10}
                                 inputRef={register}
                                 label="precio"
                                 name="price"
+                                disabled
                             />
                         </Grid>
                         <Grid item xs={12} md={6} >
@@ -204,6 +211,7 @@ const AddTutorial = (props) => {
                                 Seleccione la imagen de comprobante de pago
                                 <input
                                     type="file"
+                                    accept="image/png, .jpeg, .jpg, image/gif"
                                     name="image"
                                     id="image"
                                     onChange={(e)=>handleImage(e.target.files)}
@@ -218,9 +226,11 @@ const AddTutorial = (props) => {
                                 fullWidth
                                 type="number"
                                 id="duration"
+                                defaultValue={1}
                                 inputRef={register}
                                 label="duracion"
                                 name="duration"
+                                disabled
                             />
                         </Grid>
                         <Grid item xs={12} >
@@ -242,9 +252,11 @@ const AddTutorial = (props) => {
                                 fullWidth
                                 type="text"
                                 id="student_id"
+                                defaultValue={user.id}
                                 inputRef={register}
                                 label="Estudiante"
                                 name="student_id"
+                                disabled
                             />
                         </Grid>
                         <Grid xs={6} spacing={2}>

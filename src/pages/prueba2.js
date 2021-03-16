@@ -1,5 +1,5 @@
 //import Users from "@/components/Users";
-import Modals from "@/components/Modals";
+import Tutorials from "@/components/Tutorials";
 import React from "react";
 import withAuth from "@/hocs/withAuth";
 import {useAuth} from "@/lib/auth";
@@ -11,58 +11,59 @@ import Routes from "src/constants/routes";
 import { withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Modals from "@/components/Modals";
 
 
 const StyledMenu = withStyles({
     paper: {
-      border: '1px solid #d3d4d5',
+        border: '1px solid #d3d4d5',
     },
-  })((props) => (
+})((props) => (
     <Menu
-      elevation={0}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
-      }}
-      {...props}
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+        }}
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+        }}
+        {...props}
     />
-  ));
-  
-  const StyledMenuItem = withStyles((theme) => ({
+));
+
+const StyledMenuItem = withStyles((theme) => ({
     root: {
-      '&:focus': {
-        backgroundColor: theme.palette.primary.main,
-        '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-          color: theme.palette.common.white,
+        '&:focus': {
+            backgroundColor: theme.palette.primary.main,
+            '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+                color: theme.palette.common.white,
+            },
         },
-      },
     },
-  }))(MenuItem);
+}))(MenuItem);
 
 const Profile = () => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
-          display: 'flex',
-          '& > *': {
-            margin: theme.spacing(1),
-          },
+            display: 'flex',
+            '& > *': {
+                margin: theme.spacing(1),
+            },
         },
         improfile: {
-          color: theme.palette.getContrastText(deepOrange[500]),
-          backgroundColor: '#000000',
-          width:150,
-          height:150,
-        },      
+            color: theme.palette.getContrastText(deepOrange[500]),
+            backgroundColor: '#000000',
+            width:150,
+            height:150,
+        },
         buttonss:{
             textAlign:'center',
-        },  
-      }));
+        },
+    }));
 
     const {user} = useAuth();
     const classes = useStyles();
@@ -81,7 +82,7 @@ const Profile = () => {
             <Grid container spacing={3}>
                 <Grid item xs={3}>
                     <div className={classes.root}>
-                        <Avatar className={classes.improfile}>{user.name}</Avatar>                    
+                        <Avatar className={classes.improfile}>{user.name}</Avatar>
                     </div>
                 </Grid>
                 <Grid item xs={6}>
@@ -91,12 +92,7 @@ const Profile = () => {
                     <Typography varian='h6'><strong>Cumpleaños:</strong> {user.birthday}</Typography><br />
                     <Typography varian='h6'><strong>Celular:</strong> {user.phone}</Typography><br />
                     <Typography varian='h6'><strong>Biografía:</strong> {user.biography}</Typography><br />
-                    <div>
-                        <Modals/>
-                    </div>
-
                 </Grid>
-                <br/><br/><br/>
                 <Grid item xs={3} className={classes.buttonss}>
                     <div>
                         <Button
@@ -119,23 +115,17 @@ const Profile = () => {
                                 <Link href={Routes.SCHEDULE}><Button>Registrar Tutoría</Button></Link>
                             </StyledMenuItem>
                             <StyledMenuItem>
-                                <Link href={Routes.EDITPROFILE}><Button>Editar mi perfil</Button></Link>                       
+                                <Link href={Routes.EDITPROFILE}><Button>Editar mi perfil</Button></Link>
                             </StyledMenuItem>
                             <StyledMenuItem>
                                 <Link href={Routes.SCHEDULE}><Button>Registrar Tutoría</Button></Link>
                             </StyledMenuItem>
-                            <StyledMenuItem>
-                                <Modals/>
-                            </StyledMenuItem>
                         </StyledMenu>
                     </div>
                 </Grid>
-                <br /><br /><br />
+                <Modals /><br /><br /><br />
             </Grid>
         </>
     );
 };
 export default withAuth(Profile);
-//<h1>{data.name}</h1>
-//<p>{data.last_name}</p>
-//<p>{data.email}</p>
