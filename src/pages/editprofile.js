@@ -7,6 +7,11 @@ import {withStyles, makeStyles} from "@material-ui/core/styles";
 import { Button, Icon, InputBase, TextField } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
+import {useAuth} from "@/lib/auth";
+import {useForm} from "react-hook-form";
+import api from "@/lib/api";
+import translateMessage from "../constants/messages";
+
 const useStyles = makeStyles((theme) => ({
     button: {
         margin: theme.spacing(3, 2, 2),
@@ -38,9 +43,13 @@ const useStyles = makeStyles((theme) => ({
 
 const EditUser = (props) => {
 
+
+    const {user} = useAuth();
     const classes = useStyles();
-    const {data, error} = useSWR(`/users/${props.id}`, fetcher);
+    const {data, error} = useSWR(`/users/`+ user.id, fetcher);
     console.log("data", data)
+    const { register, handleSubmit, control, errors } = useForm();
+
     const [state, setState] = useState("");
 
     if (error) return <div>No se pueden cargar los datos del usuario a modificar</div>;
@@ -49,11 +58,37 @@ const EditUser = (props) => {
     const handleChange = (event) => {
         setState(event.target.value);
     };
-    const onSubmit = async (data) => {
-        console.log("data",data)
-    }
 
-    console.log("Id del usuario", props.id);
+
+    const onSubmit = async (data) => {
+        console.log("data", data);
+        try {
+            const response = await api.put("/users"+user.id, data);
+            console.log("user", response);
+            return response;
+        } catch (error) {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                alert(translateMessage(error.response.data.error));
+                console.log(error.response.data);
+                return Promise.reject(error.response);
+                // return error.response;
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error", error.message);
+            }
+            console.log(error.config);
+        }
+    };
+
+    console.log("Id del usuario", user.id);
+
 
     return (
         <>
@@ -63,10 +98,12 @@ const EditUser = (props) => {
                 justify="space-between"
                 alignItems="flex-start"
             >
-                <h2>Edicion del usuario #{data.id}</h2>
-                <Icon color="secondary" onClick={props.onHandleCloseModal}>cancelar</Icon>
+
+                <h2>Edicion del usuario {data.name}</h2>
+
             </Grid>
-            <form className={classes.root} autoComplete="off">
+            <form className={classes.root} autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <p>Nombre:</p>
@@ -74,6 +111,9 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
+
+                            inputRef={register}
+
                             defaultValue={data.name}
                             variant="outlined"
                         />
@@ -84,6 +124,9 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
+
+                            inputRef={register}
+
                             defaultValue={data.last_name}
                             variant="outlined"
                         />
@@ -94,6 +137,9 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
+
+                            inputRef={register}
+
                             defaultValue={data.phone}
                             variant="outlined"
                         />
@@ -104,6 +150,9 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
+
+                            inputRef={register}
+
                             defaultValue={data.biography}
                             variant="outlined"
                         />

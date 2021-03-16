@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
         color: "#FFFFFF",
         alignItems: "center",
         padding:"10px",
-        fontSize:"20px"
+        fontSize:"20px",
+
     },
     iconos: {
         display: "-webkit-box",

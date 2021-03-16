@@ -1,70 +1,176 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import NoSsr from '@material-ui/core/NoSsr';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import React, {useEffect, useState} from "react";
+import useSWR from "swr";
+import {fetcher} from "@/lib/utils";
+import Loading from "@/components/Loading";
+import withAuth from "@/hocs/withAuth";
+import {withStyles, makeStyles} from "@material-ui/core/styles";
+import { Button, Icon, InputBase, TextField } from "@material-ui/core";
+import {useAuth} from "@/lib/auth";
+import Grid from "@material-ui/core/Grid";
+import api from "@/lib/api";
+import * as yup from "yup";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
+import Typography from "@material-ui/core/Typography";
 
-function TabContainer(props) {
-    return (
+const schema = yup.object().shape({
+    name: yup.string().required(),
+    last_name: yup.string().required(),
 
-        <Typography component="div" style={{ padding: 8 * 3 }}>
-            {props.children}
-        </Typography>
-    );
-}
-
-TabContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-};
-
-function LinkTab(props) {
-    return <Tab component="a" onClick={event => event.preventDefault()} {...props} />;
-}
-
-const styles = theme => ({
+});
+const useStyles = makeStyles((theme) => ({
+    button: {
+        margin: theme.spacing(3, 2, 2),
+        backgroundColor: theme,
+    },
+    button2: {
+        margin: theme.spacing(3, 2, 2),
+        backgroundColor: theme,
+    },
     root: {
-        flexGrow: 1,
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    bootstrapFormLabel: {
+        fontSize: 18,
+    },
+    root2: {
+        width: '100%',
+        maxWidth: '36ch',
         backgroundColor: theme.palette.background.paper,
     },
-});
+    inline: {
+        display: 'inline',
+    },
+}));
 
-class NavTabs extends React.Component {
-    state = {
-        value: 0,
+const EditUser = (props) => {
+
+
+    const {user} = useAuth();
+
+    const classes = useStyles();
+    const {data, error} = useSWR(`/users/${user.id}`, fetcher);
+    console.log("data", data)
+    const [state, setState] = useState("");
+
+    if (error) return <div>No se pueden cargar los datos del usuario a modificar</div>;
+    if (!data) return <Loading/>;
+
+    const handleChange = (event) => {
+        setState(event.target.value);
     };
 
-    handleChange = (event, value) => {
-        this.setState({ value });
+    const {regTutorial: doRegTutorial} = useAuth();
+    const {regTutorial, handleSubmit, errors} = useForm({
+            resolver: yupResolver(schema)});
+
+
+    const onSubmit = async (data) => {
+        console.log("data", data);
+        try {
+            const userData = await doRegTutorial(data);
+
+            console.log("userData", userData);
+        } catch (error) {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                alert(error.response.message);
+                console.log(error.response);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error", error.message);
+            }
+            console.log(error.config);
+        }
     };
 
-    render() {
-        const { classes } = this.props;
-        const { value } = this.state;
 
-        return (
+    return (
+        <>
+            <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="flex-start"
+            >
+                <h2>Edicion del usuario #{data.name}</h2>
 
-            <NoSsr>
-                <div className={classes.root}>
-                    <AppBar position="static">
-                        <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
-                            <LinkTab label="Page One" href="page1" />
-                            <LinkTab label="Page Two" href="page2" />
-                            <LinkTab label="Page Three" href="page3" />
-                        </Tabs>
-                    </AppBar>
-                    {value === 0 && <TabContainer>Page One</TabContainer>}
-                    {value === 1 && <TabContainer>Page Two</TabContainer>}
-                    {value === 2 && <TabContainer>Page Three</TabContainer>}
-                </div>
-            </NoSsr>
-        );
-    }
-}
-
-NavTabs.propTypes = {
-    classes: PropTypes.object.isRequired,
+            </Grid>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <p>Nombre:</p>
+                        <TextField
+                            id="outlined-multiline-static"
+                            multiline
+                            rows={8}
+                            inputRef={regTutorial}
+                            defaultValue={data.name}
+                            variant="outlined"
+                        />
+                        <Typography color="primary">{errors.name?.message}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <p>Apellido:</p>
+                        <TextField
+                            id="outlined-multiline-static"
+                            multiline
+                            rows={8}
+                            inputRef={regTutorial}
+                            defaultValue={data.last_name}
+                            variant="outlined"
+                        />
+                        <Typography color="primary">{errors.name?.message}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <p>Telefono:</p>
+                        <TextField
+                            id="outlined-multiline-static"
+                            multiline
+                            rows={8}
+                            inputRef={regTutorial}
+                            defaultValue={data.phone}
+                            variant="outlined"
+                        />
+                        <Typography color="primary">{errors.name?.message}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <p>Biografia:</p>
+                        <TextField
+                            id="outlined-multiline-static"
+                            multiline
+                            rows={8}
+                            inputRef={regTutorial}
+                            defaultValue={data.biography}
+                            variant="outlined"
+                        />
+                        <Typography color="primary">{errors.name?.message}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="secondary"
+                            className={classes.submit}
+                        >
+                            Aceptar
+                        </Button>
+                    </Grid>
+                </Grid>
+            </form>
+        </>
+    );
 };
-export default withStyles(styles)(NavTabs);
+
+export default withAuth(EditUser);

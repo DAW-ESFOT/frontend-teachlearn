@@ -67,7 +67,6 @@ const IconsMenu = () => {
             onClose={handleMenuAccountClose}
         >
             <MenuItem onClick={handleMenuAccountClose}><Link href={Routes.PROFILE}>Perfil</Link></MenuItem>
-            <MenuItem onClick={handleMenuAccountClose}>Mi cuenta</MenuItem>
             <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
         </Menu>
     );

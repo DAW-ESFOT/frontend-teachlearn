@@ -14,7 +14,7 @@ const publicRoutes = {
 const privateRoutes = {
     HOME: "/",
     PROFILE: '/profile',
-    SCHEDULE: '/schedule',
+    SCHEDULE: '/addTutorial',
     EDITPROFILE: '/editprofile',
     ADDTUTORIA:'/addTutorial'
     // ARTICLE_ID: "/articulo/:id",
