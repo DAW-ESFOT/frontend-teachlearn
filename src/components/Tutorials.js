@@ -2,7 +2,6 @@ import React from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import Loading from "@/components/Loading";
-import withAuth from "@/hocs/withAuth";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
   Dialog,
@@ -23,10 +22,8 @@ import {
   TablePagination,
   IconButton,
 } from "@material-ui/core";
-import BorderColorIcon from "@material-ui/icons/BorderColor";
-//import EditComplaint from "@/components/EditComplaint";
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
+import withAuth from "@/hocs/withAuth";
+import { useAuth } from "@/lib/auth";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -57,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Tutorials = ({ tutorialId }) => {
   const classes = useStyles();
+  const { user } = useAuth();
   const { data, error } = useSWR(`/my-tutorials`, fetcher);
 
   console.log("data Complaints", data);
@@ -81,7 +79,6 @@ const Tutorials = ({ tutorialId }) => {
                       Observación
                     </StyledTableCell>
                     <StyledTableCell align="center">Estudiante</StyledTableCell>
-                    <StyledTableCell align="center">Profesor</StyledTableCell>
                     <StyledTableCell align="center">Materia</StyledTableCell>
                   </TableRow>
                 </TableHead>
@@ -102,11 +99,9 @@ const Tutorials = ({ tutorialId }) => {
                       </StyledTableCell>
 
                       <StyledTableCell align="justify">
-                        {tutorial.student_name}
+                        {user.name}
                       </StyledTableCell>
-                      <StyledTableCell align="justify">
-                        {tutorial.teacher_name}
-                      </StyledTableCell>
+
                       <StyledTableCell align="justify">
                         {tutorial.subject_name}
                       </StyledTableCell>

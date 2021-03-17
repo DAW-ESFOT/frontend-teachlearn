@@ -13,6 +13,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import SentimentVerySatisfiedIcon from "@material-ui/icons/SentimentVerySatisfied";
+import EmpyTutorial from "@/components/EmpyTutorial";
 
 const StyledMenu = withStyles({
   paper: {
@@ -158,6 +159,9 @@ const Profile = () => {
                   </MuiLink>
                 </Link>
               </StyledMenuItem>
+              <StyledMenuItem>
+                <EmpyTutorial />
+              </StyledMenuItem>
             </StyledMenu>
           </div>
         </Grid>
@@ -192,6 +196,3 @@ const Profile = () => {
   );
 };
 export default withAuth(Profile);
-//<h1>{data.name}</h1>
-//<p>{data.last_name}</p>
-//<p>{data.email}</p>
