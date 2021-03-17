@@ -14,7 +14,8 @@ import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
 import Routes from "../constants/routes";
-import Link from "@material-ui/core/Link";
+import { Link as MuiLink } from "@material-ui/core";
+import Link from "next/link";
 import styles from "@/styles/Login.module.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
@@ -28,8 +29,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#B4B29E",
     padding: 20,
     borderRadius: 5,
   },
@@ -58,14 +58,18 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     backgroundColor: theme.palette.secondary.main,
   },
+  buttons: {
+    textAlign: "center",
+  },
+  main: {
+    textAlign: "flex",
+  },
   container: {
     display: "flex",
     flexWrap: "wrap",
   },
-  textField: {
-    marginRight: theme.spacing(1),
-    marginLeft: theme.spacing(1),
-    width: 200,
+  topicc: {
+    backgroundColor: "#B4B29E",
   },
 }));
 
@@ -156,30 +160,30 @@ const AddTutorial = (props) => {
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Grid container>
-            <Grid item xs={12} md={6}>
+          <Grid container className={classes.main}>
+            <Grid item xs={12} md={5} spacing={1}>
               <TextField
                 variant="outlined"
                 type="date"
+                className={classes.log1}
                 required
-                fullWidth
                 id="date"
                 label=""
                 name="date"
                 autoComplete="date"
                 inputRef={register}
               />
-            </Grid>
-            <Grid xs={12} md={6}>
+              <br />
+              <br />
               <TextField
                 id="time"
+                md={5}
+                className={classes.log2}
                 name="hour"
                 label="Hora de reserva"
-                //defaultValue="7:30"
                 className={classes.textField}
                 variant="outlined"
                 color="primary"
-                margin="normal"
                 inputRef={register}
                 InputLabelProps={{
                   shrink: true,
@@ -188,7 +192,12 @@ const AddTutorial = (props) => {
                   step: 300,
                 }}
               />
+              <br />
+              <br />
             </Grid>
+
+            <br />
+            <br />
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -200,9 +209,13 @@ const AddTutorial = (props) => {
                 name="observation"
                 autoComplete="observation"
               />
+              <br />
+              <br />
             </Grid>
+
             <Grid item xs={12}>
               <TextField
+                className={classes.topicc}
                 variant="outlined"
                 required
                 fullWidth
@@ -212,7 +225,11 @@ const AddTutorial = (props) => {
                 autoComplete="topic"
                 inputRef={register}
               />
+              <br />
+              <br />
             </Grid>
+            <br />
+            <br />
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -226,12 +243,17 @@ const AddTutorial = (props) => {
                 name="price"
                 disabled
               />
+              <br />
+              <br />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Button component="label">
+            <br />
+            <br />
+            <Grid item xs={12}>
+              <Button component="label" variant="contained" color="primary">
                 Seleccionar Imagen
                 <input
                   type="file"
+                  fullWidth
                   name="image"
                   id="image"
                   ref={register}
@@ -240,6 +262,10 @@ const AddTutorial = (props) => {
                 />
               </Button>
             </Grid>
+            <br />
+            <br />
+            <br />
+            <br />
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -249,10 +275,14 @@ const AddTutorial = (props) => {
                 id="duration"
                 defaultValue={1}
                 inputRef={register}
-                label="duración de la tutoría"
+                label="duración de la tutoría (x Hora)"
                 name="duration"
               />
+              <br />
+              <br />
             </Grid>
+            <br />
+            <br />
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -264,8 +294,12 @@ const AddTutorial = (props) => {
                 label="Materia"
                 name="subject_id"
               />
+              <br />
+              <br />
             </Grid>
-            <Grid xs={6} spacing={2}>
+            <br />
+            <br />
+            <Grid item xs={12} spacing={2} className={classes.buttons}>
               <Button
                 onClick={props.onCancel}
                 type="submit"
@@ -275,12 +309,20 @@ const AddTutorial = (props) => {
               >
                 Crear
               </Button>
-            </Grid>
+              <br />
+              <br />
 
-            <Grid xs={6} spacing={2} align="right">
-              <Button onClick={props.onCancel} variant="contained">
-                <Link href={Routes.PROFILE}>Ir a mi perfil</Link>
-              </Button>
+              <Link href={Routes.PROFILE}>
+                <MuiLink>
+                  <Button
+                    onClick={props.onCancel}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Ir a mi perfil
+                  </Button>
+                </MuiLink>
+              </Link>
             </Grid>
           </Grid>
         </form>
