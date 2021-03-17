@@ -95,12 +95,24 @@ const AddTutorial = (props) => {
     try {
       const response = await api.post("/tutorials", tutorialData);
       console.log("Data Tutorial", response);
+      swal({
+        title: "Tutoría registrada!",
+        text: "Por favor revise su correo",
+        icon: "success",
+        button: "Aceptar",
+        timer: "3000",
+      });
       return response;
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        alert(translateMessage(error.response.data.error));
+        swal({
+          title: translateMessage(error.response.data.error),
+          icon: "error",
+          button: "Aceptar",
+          timer: "2000",
+        });
         console.log(error.response.data);
         return Promise.reject(error.response);
         // return error.response;
