@@ -68,18 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const schema = yup.object().shape({
-  hour: yup.string().required("Escoja una hora "),
-  date: yup.date().required("Escoja un fecha"),
-  observation: yup.string().required("Escriba una observación"),
-  topic: yup.string().required("Escriba un tema"),
-  price: yup.number().required("Ponga el precio"),
-  image: yup.string().required("Escoja su comprobante de pago"),
-  duration: yup
-    .number()
-    .required("Escriba en numeros cuanto va a durar la tuturoria"),
-  subject_id: yup.number().required("Que materia quiere"),
-});
+const schema = yup.object().shape({});
 
 const AddTutorial = (props) => {
   const { user } = useAuth();
@@ -90,18 +79,18 @@ const AddTutorial = (props) => {
   const fileInputRef = useRef();
 
   const onSubmit = async (data) => {
-    console.log("data", data.image[0]);
+    console.log("data", data);
 
     const tutorialData = { ...data, teacher_id: null, image };
     console.log("Tutorial", tutorialData);
-    const formData = new formData();
-    formData.append("date", data.date);
-    formData.append("hour", data.hour);
-    formData.append("observation", data.observation);
-    formData.append("topic", data.topic);
-    formData.append("price", data.price);
-    formData.append("duration", data.duration);
-    formData.append("subject_id", data.subject_id);
+    //const formData = new formData();
+    //formData.append("date", data.date);
+    //formData.append("hour", data.hour);
+    //formData.append("observation", data.observation);
+    //formData.append("topic", data.topic);
+    //formData.append("price", data.price);
+    //formData.append("duration", data.duration);
+    //formData.append("subject_id", data.subject_id);
 
     try {
       const response = await api.post("/tutorials", tutorialData);
@@ -217,10 +206,7 @@ const AddTutorial = (props) => {
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <Button component="label">
-                Seleccione la imagen de comprobante de pago
-                <input type="file" name="image" type="file" ref={register} />
-              </Button>
+              <TextField id="image" name="image" type="file" ref={register} />
             </Grid>
             <Grid item xs={12}>
               <TextField
