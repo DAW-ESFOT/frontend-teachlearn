@@ -4,8 +4,11 @@ import { fetcher } from "@/lib/utils";
 import Loading from "@/components/Loading";
 import withAuth from "@/hocs/withAuth";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { Button, Icon, InputBase, Link, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
+import { Link as MuiLink } from "@material-ui/core";
+import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
+import BorderColorIcon from "@material-ui/icons/BorderColor";
 import SaveIcon from "@material-ui/icons/Save";
 //table
 import Table from "@material-ui/core/Table";
@@ -17,7 +20,6 @@ import { useAuth } from "@/lib/auth";
 import { useForm } from "react-hook-form";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
-import { fontSize } from "@material-ui/system";
 import Routes from "../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +48,12 @@ const useStyles = makeStyles((theme) => ({
   },
   inline: {
     display: "inline",
+  },
+  cancelar: {
+    textAlign: "right",
+  },
+  user: {
+    textAlign: "center",
   },
 }));
 
@@ -97,13 +105,11 @@ const EditUser = (props) => {
 
   return (
     <>
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="flex-start"
-      >
-        <h2>Edicion del usuario {data.name}</h2>
+      <Grid container className={classes.user}>
+        <h2>
+          <BorderColorIcon style={{ fontSize: 25 }} /> Edición de perfil del
+          usuario: {data.name}
+        </h2>
       </Grid>
       <form
         className={classes.root}
@@ -175,11 +181,12 @@ const EditUser = (props) => {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={3}>
+          <br />
+          <br />
+          <Grid item xs={6}>
             <Link href={Routes.PROFILE}>
               <Button
                 type="submit"
-                fullWidth
                 variant="contained"
                 color="secondary"
                 className={classes.submit}
@@ -187,6 +194,15 @@ const EditUser = (props) => {
                 <SaveIcon />
                 Guardar
               </Button>
+            </Link>
+          </Grid>
+          <Grid item xs={6} className={classes.cancelar}>
+            <Link href={Routes.PROFILE} passHref>
+              <MuiLink>
+                <Button variant="contained" color="primary">
+                  Cancelar
+                </Button>
+              </MuiLink>
             </Link>
           </Grid>
         </Grid>
