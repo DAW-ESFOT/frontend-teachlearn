@@ -68,7 +68,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const schema = yup.object().shape({});
+const schema = yup.object().shape({
+  hour: yup.string().required("Escoja una hora "),
+  date: yup.date().required("Escoja un fecha"),
+  observation: yup.string().required("Escriba una observación"),
+  topic: yup.string().required("Escriba un tema"),
+  price: yup.number().required("Ponga el precio"),
+  image: yup.string().required("Escoja su comprobante de pago"),
+  duration: yup
+    .number()
+    .required("Escriba en numeros cuanto va a durar la tuturoria"),
+  subject_id: yup.number().required("Que materia quiere"),
+});
 
 const AddTutorial = (props) => {
   const { user } = useAuth();

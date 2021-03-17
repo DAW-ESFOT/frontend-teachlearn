@@ -126,7 +126,7 @@ const Home = ({ comments }) => {
       </div>
       <br />
       <div className={classes.root4}>
-        <Link href={Routes.ADDSUBJECT} passHref>
+        <Link href={Routes.SUBJECTS} passHref>
           <MuiLink>
             <Button variant="contained" color="secondary">
               Registrar una Matería

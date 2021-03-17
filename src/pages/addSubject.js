@@ -164,7 +164,7 @@ const AddSubject = (props) => {
                 Crear
               </Button>
               <Grid xs={6} spacing={2} align="right">
-                <Link href={Routes.HOME} passHref>
+                <Link href={Routes.SUBJECTS} passHref>
                   <MuiLink>
                     <Button onClick={props.onCancel} variant="contained">
                       Cancelar
