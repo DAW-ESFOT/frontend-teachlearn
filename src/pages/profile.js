@@ -4,14 +4,14 @@ import React from "react";
 import withAuth from "@/hocs/withAuth";
 import {useAuth} from "@/lib/auth";
 import { makeStyles } from '@material-ui/core/styles';
-import {Grid,Typography,Avatar, Link} from '@material-ui/core';
+import {Grid,Typography,Avatar} from '@material-ui/core';
 import { deepOrange } from '@material-ui/core/colors';
-import Button from '@material-ui/core/Button';
 import Routes from "src/constants/routes";
 import { withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import { Button, Link as MuiLink } from "@material-ui/core";
+import Link from "next/link";
 
 const StyledMenu = withStyles({
     paper: {
@@ -92,9 +92,6 @@ const Profile = () => {
                     <Typography varian='h6'><strong>Cumpleaños:</strong> {user.birthday}</Typography><br />
                     <Typography varian='h6'><strong>Celular:</strong> {user.phone}</Typography><br />
                     <Typography varian='h6'><strong>Biografía:</strong> {user.biography}</Typography><br />
-                    <div>
-                        <Modals/>
-                    </div>
 
                 </Grid>
                 <br/><br/><br/>
@@ -117,13 +114,25 @@ const Profile = () => {
                             onClose={handleClose}
                         >
                             <StyledMenuItem>
-                                <Link href={Routes.SCHEDULE}><Button>Registrar Tutoría</Button></Link>
+                                <Link href={Routes.SCHEDULE} passHref>
+                                    <MuiLink>
+                                        <Button>Registrar Tutoría</Button>
+                                    </MuiLink>
+                                </Link>
                             </StyledMenuItem>
                             <StyledMenuItem>
-                                <Link href={Routes.EDITPROFILE}><Button>Editar mi perfil</Button></Link>                       
+                                <Link href={Routes.EDITPROFILE} passHref>
+                                    <MuiLink>
+                                        <Button>Editar mi perfil</Button>
+                                    </MuiLink>
+                                </Link>
                             </StyledMenuItem>
                             <StyledMenuItem>
-                                <Link href={Routes.ADDTUTORIA}><Button>Registrar Tutoría</Button></Link>
+                                <Link href={Routes.ADDTUTORIA} passHref>
+                                    <MuiLink>
+                                        <Button>Registrar Tutoría</Button>
+                                    </MuiLink>
+                                </Link>
                             </StyledMenuItem>
                             <StyledMenuItem>
                                 <Modals/>
