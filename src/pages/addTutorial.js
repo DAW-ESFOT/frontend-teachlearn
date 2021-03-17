@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
+import swal from "sweetalert";
 import { fetcher } from "@/lib/utils";
 import { useRouter } from "next/router";
 import Loading from "@/components/Loading";
@@ -80,23 +81,34 @@ const AddTutorial = (props) => {
 
   const onSubmit = async (data) => {
     console.log("data", data);
+    const newTutorial = {
+      date: data.date,
+      hour: data.hour,
+      observation: data.observation,
+      topic: data.topic,
+      price: data.price,
+      image: data.image[0],
+      duration: data.duration,
+      subject_id: data.subject_id,
+    };
+    const formData = new FormData();
+    formData.append("date", newTutorial.date);
+    formData.append("hour", newTutorial.hour);
+    formData.append("observation", newTutorial.observation);
+    formData.append("topic", newTutorial.topic);
+    formData.append("price", newTutorial.price);
+    formData.append("image", newTutorial.image);
+    formData.append("duration", newTutorial.duration);
+    formData.append("subject_id", newTutorial.subject_id);
 
-    const tutorialData = { ...data, teacher_id: null, image };
-    console.log("Tutorial", tutorialData);
-    //const formData = new formData();
-    //formData.append("date", data.date);
-    //formData.append("hour", data.hour);
-    //formData.append("observation", data.observation);
-    //formData.append("topic", data.topic);
-    //formData.append("price", data.price);
-    //formData.append("duration", data.duration);
-    //formData.append("subject_id", data.subject_id);
+    console.log("formData", formData);
+    console.log("Nueva tutoria", newTutorial);
 
     try {
-      const response = await api.post("/tutorials", tutorialData);
+      const response = await api.post("/tutorials", formData);
       console.log("Data Tutorial", response);
       swal({
-        title: "Tutoría registrada!",
+        title: "Tutoría registrada! ...Revise su correo",
         text: "Por favor revise su correo",
         icon: "success",
         button: "Aceptar",
@@ -108,7 +120,8 @@ const AddTutorial = (props) => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         swal({
-          title: translateMessage(error.response.data.error),
+          title: "No se pudo registrar la tutoría",
+          text: translateMessage(error.response.data.error),
           icon: "error",
           button: "Aceptar",
           timer: "2000",
@@ -130,9 +143,7 @@ const AddTutorial = (props) => {
   };
 
   const handleImage = (imageFile) => {
-    //<input type="file" ref={fileInputRef}/>
     setImage(imageFile);
-
     console.log("image", imageFile);
   };
 
@@ -178,7 +189,6 @@ const AddTutorial = (props) => {
                 }}
               />
             </Grid>
-
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -210,15 +220,25 @@ const AddTutorial = (props) => {
                 fullWidth
                 type="number"
                 id="price"
-                //defaultValue="10"
+                defaultValue="10"
                 inputRef={register}
-                label="precio"
+                label="Precio: $10 x hora"
                 name="price"
-                //disabled
+                disabled
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField id="image" name="image" type="file" ref={register} />
+              <Button component="label">
+                Seleccionar Imagen
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  ref={register}
+                  onChange={(e) => handleImage(e.target.files[0])}
+                  hidden
+                />
+              </Button>
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -227,11 +247,10 @@ const AddTutorial = (props) => {
                 fullWidth
                 type="number"
                 id="duration"
-                //defaultValue="1"
+                defaultValue={1}
                 inputRef={register}
-                label="duracion"
+                label="duración de la tutoría"
                 name="duration"
-                //disabled
               />
             </Grid>
             <Grid item xs={12}>
@@ -246,10 +265,8 @@ const AddTutorial = (props) => {
                 name="subject_id"
               />
             </Grid>
-
             <Grid xs={6} spacing={2}>
               <Button
-                onSubmit={handleSubmit(onSubmit)}
                 onClick={props.onCancel}
                 type="submit"
                 variant="contained"
@@ -259,9 +276,10 @@ const AddTutorial = (props) => {
                 Crear
               </Button>
             </Grid>
+
             <Grid xs={6} spacing={2} align="right">
               <Button onClick={props.onCancel} variant="contained">
-                <Link href={Routes.PROFILE}>Cancelar</Link>
+                <Link href={Routes.PROFILE}>Ir a mi perfil</Link>
               </Button>
             </Grid>
           </Grid>
