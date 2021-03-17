@@ -1,29 +1,19 @@
 import React, { useEffect, useState } from "react";
-import useSWR from "swr";
 import withAuth from "@/hocs/withAuth";
-import { useAuth } from "@/lib/auth";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import {
-  Paper,
-  Button,
-  Grid,
-  TextField,
-  Select,
-  InputBase,
-} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button, Grid, TextField, Select } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
 import Routes from "../constants/routes";
-//import Link from "@material-ui/core/Link";
 import { Link as MuiLink } from "@material-ui/core";
 import Link from "next/link";
 import styles from "@/styles/Login.module.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
-//import { Alert, AlertTitle } from "@material-ui/lab";
+import swal from "sweetalert";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 
 const schema = yup.object().shape({
   name: yup.string().required("Ingrese una Materia"),
@@ -39,30 +29,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "#f9f9f9",
     padding: 20,
     borderRadius: 5,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-  root2: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
   },
   form: {
     width: "100%",
     marginTop: theme.spacing(2),
+    textAlign: "center",
   },
   submit: {
     margin: theme.spacing(2, 0, 2),
@@ -76,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     marginLeft: theme.spacing(1),
     width: 200,
+  },
+  buttons: {
+    textAlign: "center",
   },
 }));
 
@@ -94,12 +70,22 @@ const AddSubject = (props) => {
     try {
       const response = await api.post("/subjects", subjectData);
       console.log("Data Subject", response);
+      swal({
+        title: "Materia registrada!",
+        icon: "success",
+        button: "Aceptar",
+        timer: "3000",
+      });
       return response;
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        alert(translateMessage(error.response.data.error));
+        swal({
+          title: translateMessage(error.response.data.error),
+          icon: "error",
+          button: "Aceptar",
+        });
         console.log(error.response.data);
         return Promise.reject(error.response);
         // return error.response;
@@ -119,6 +105,17 @@ const AddSubject = (props) => {
   return (
     <>
       <div className={classes.paper}>
+        <h1>
+          Ingreso de nueva Materia <AddBoxIcon styles={{ fontSize: 25 }} />
+        </h1>
+        <img
+          src="https://blog.paessler.com/hubfs/824814-5-Things-to-consider-FB.RZ.png"
+          alt="new subject"
+          height={250}
+          width={450}
+        />
+        <br />
+        <br />
         <Container component="main" maxWidth="xs" className={styles.container}>
           <form
             className={classes.form}
@@ -126,7 +123,7 @@ const AddSubject = (props) => {
             autoComplete="off"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <Grid container spacing={2}>
+            <Grid container>
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -154,27 +151,42 @@ const AddSubject = (props) => {
                   <option value="basic">Escuela</option>
                   <option value="highSchool">Colegio</option>
                 </Select>
+                <br />
+                <br />
               </Grid>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Crear
-              </Button>
-              <Grid xs={6} spacing={2} align="right">
+              <Grid item xs={12} className={classes.buttons}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Crear
+                </Button>
+                <br />
+                <br />
                 <Link href={Routes.SUBJECTS} passHref>
                   <MuiLink>
-                    <Button onClick={props.onCancel} variant="contained">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={props.onCancel}
+                      variant="contained"
+                    >
                       Cancelar
                     </Button>
                   </MuiLink>
                 </Link>
+                <br />
+                <br />
               </Grid>
             </Grid>
           </form>
+          <br />
+          <br />
         </Container>
+        <br />
+        <br />
       </div>
     </>
   );
