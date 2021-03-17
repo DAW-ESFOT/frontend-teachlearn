@@ -17,7 +17,9 @@ import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
 import Routes from "../constants/routes";
-import Link from "@material-ui/core/Link";
+//import Link from "@material-ui/core/Link";
+import { Link as MuiLink } from "@material-ui/core";
+import Link from "next/link";
 import styles from "@/styles/Login.module.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
@@ -162,9 +164,13 @@ const AddSubject = (props) => {
                 Crear
               </Button>
               <Grid xs={6} spacing={2} align="right">
-                <Button onClick={props.onCancel} variant="contained">
-                  <Link href={Routes.HOME}>Cancelar</Link>
-                </Button>
+                <Link href={Routes.HOME} passHref>
+                  <MuiLink>
+                    <Button onClick={props.onCancel} variant="contained">
+                      Cancelar
+                    </Button>
+                  </MuiLink>
+                </Link>
               </Grid>
             </Grid>
           </form>
@@ -173,3 +179,5 @@ const AddSubject = (props) => {
     </>
   );
 };
+
+export default withAuth(AddSubject);

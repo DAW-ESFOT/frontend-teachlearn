@@ -125,6 +125,16 @@ const Home = ({ comments }) => {
         </Link>
       </div>
       <br />
+      <div className={classes.root4}>
+        <Link href={Routes.ADDSUBJECT} passHref>
+          <MuiLink>
+            <Button variant="contained" color="secondary">
+              Registrar una Matería
+            </Button>
+          </MuiLink>
+        </Link>
+      </div>
+      <br />
       <Grid className={classes.root1}>
         <h1>¿Como surgió TEACHlearn?</h1>
         <GroupIcon style={{ fontSize: 40 }} />
