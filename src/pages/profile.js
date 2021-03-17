@@ -1,6 +1,4 @@
-//import Users from "@/components/Users";
 import Modals from "@/components/Modals";
-import EmpyTutorial from "@/components/EmpyTutorial";
 import React from "react";
 import withAuth from "@/hocs/withAuth";
 import { useAuth } from "@/lib/auth";
@@ -14,12 +12,17 @@ import Routes from "src/constants/routes";
 import { withStyles } from "@material-ui/core/styles";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import SentimentVerySatisfiedIcon from "@material-ui/icons/SentimentVerySatisfied";
 
 const StyledMenu = withStyles({
   paper: {
     border: "1px solid #d3d4d5",
   },
   regcomm: {
+    minWidth: "100%",
+    textAlign: "center",
+  },
+  comment: {
     textAlign: "center",
   },
 })((props) => (
@@ -60,10 +63,13 @@ const Profile = () => {
     improfile: {
       color: theme.palette.getContrastText(deepOrange[500]),
       backgroundColor: "#000000",
-      width: 250,
-      height: 250,
+      width: 175,
+      height: 175,
     },
     buttonss: {
+      textAlign: "center",
+    },
+    contcoment: {
       textAlign: "center",
     },
   }));
@@ -116,9 +122,6 @@ const Profile = () => {
             <strong>Biografía:</strong> {user.biography}
           </Typography>
           <br />
-          <div>
-            <Modals />
-          </div>
         </Grid>
         <br />
         <br />
@@ -142,13 +145,6 @@ const Profile = () => {
               onClose={handleClose}
             >
               <StyledMenuItem>
-                <Link href={Routes.SCHEDULE} passHref>
-                  <MuiLink>
-                    <Button>Registrar Tutoría</Button>
-                  </MuiLink>
-                </Link>
-              </StyledMenuItem>
-              <StyledMenuItem>
                 <Link href={Routes.EDITPROFILE} passHref>
                   <MuiLink>
                     <Button>Editar mi perfil</Button>
@@ -162,31 +158,35 @@ const Profile = () => {
                   </MuiLink>
                 </Link>
               </StyledMenuItem>
-              <StyledMenuItem>
-                <Modals />
-              </StyledMenuItem>
-              <StyledMenuItem>
-                <EmpyTutorial />
-              </StyledMenuItem>
             </StyledMenu>
           </div>
         </Grid>
-        <div className={classes.regcomm}>
-          ¿Quiere realizar algún comentario sobre el sistema y su experiencia?
-          ...Nos gustaría saberlo
+        <br />
+        <br />
+        <Grid item xs={12} container spacing={3} className={classes.contcoment}>
+          <Grid item xs={12}>
+            <Modals />
+          </Grid>
           <br />
           <br />
-          <Link href={Routes.ADDCOMMENT} passHref>
-            <MuiLink>
-              <Button variant="contained" color="primary">
-                Ingresar un comentario
-              </Button>
-            </MuiLink>
-          </Link>
-        </div>
-        <br />
-        <br />
-        <br />
+          <Grid item xs={12}>
+            <Typography variant="h5">
+              ¿Quiere realizar algún comentario sobre el sistema y su
+              experiencia? ...Nos gustaría saberlo{" "}
+              <SentimentVerySatisfiedIcon style={{ fontSize: 25 }} />
+            </Typography>
+            <br />
+          </Grid>
+          <Grid item xs={12} className={classes.comment}>
+            <Link href={Routes.ADDCOMMENT} passHref>
+              <MuiLink>
+                <Button variant="contained" color="primary">
+                  Ingresar un comentario
+                </Button>
+              </MuiLink>
+            </Link>
+          </Grid>
+        </Grid>
       </Grid>
     </>
   );
