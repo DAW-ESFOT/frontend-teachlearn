@@ -178,7 +178,7 @@ export default function MainMenu(props) {
     );
 
     return (
-        <div className={classes.grow}>
+        <div>
             <HideOnScroll {...props}>
                 <AppBar position="sticky" className={classes.appBar}>
                     <Toolbar>

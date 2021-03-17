@@ -63,7 +63,7 @@ const EditUser = (props) => {
     const onSubmit = async (data) => {
         console.log("data", data);
         try {
-            const response = await api.put("/users"+user.id, data);
+            const response = await api.put("/users/"+user.id, data);
             console.log("user", response);
             return response;
         } catch (error) {
@@ -111,7 +111,7 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
-
+                            name = "name"
                             inputRef={register}
 
                             defaultValue={data.name}
@@ -124,9 +124,8 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
-
+                            name="last_name"
                             inputRef={register}
-
                             defaultValue={data.last_name}
                             variant="outlined"
                         />
@@ -137,7 +136,7 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
-
+                            name="phone"
                             inputRef={register}
 
                             defaultValue={data.phone}
@@ -150,7 +149,7 @@ const EditUser = (props) => {
                             id="outlined-multiline-static"
                             multiline
                             rows={8}
-
+                            name="biography"
                             inputRef={register}
 
                             defaultValue={data.biography}

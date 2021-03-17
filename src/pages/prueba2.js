@@ -12,6 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Modals from "@/components/Modals";
+import Tutorial2 from "@/components/Tutorial2";
 
 
 const StyledMenu = withStyles({
@@ -123,7 +124,7 @@ const Profile = () => {
                         </StyledMenu>
                     </div>
                 </Grid>
-                <Modals /><br /><br /><br />
+                <Tutorial2 /><br /><br /><br />
             </Grid>
         </>
     );

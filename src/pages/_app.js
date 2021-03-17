@@ -22,10 +22,10 @@ function MyApp({ Component, pageProps }) {
         <AuthProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-
+<div style={{minHeight: '100vh', display:'flex', flex:'auto', flexDirection: 'column' }}>
             <Navigation />
 
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" style={{flexGrow:1}}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Component {...pageProps} />
@@ -33,6 +33,7 @@ function MyApp({ Component, pageProps }) {
               </Grid>
             </Container>
             <Footer/>
+</div>
           </ThemeProvider>
         </AuthProvider>
     </>

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Tutorial2 = ({ tutorialId }) => {
     const classes = useStyles();
-    const {data, error} = api.get(`/tutorials`);
+    const {data, error} = useSWR(`/tutorials/all`,fetcher);
 
 
     console.log("data Complaints", data);
@@ -67,8 +67,7 @@ const Tutorial2 = ({ tutorialId }) => {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {data.data.filter(tutorial => tutorial.teacher_id == null )
-                                            .map((tutorial) => (
+                                        {data.data.map((tutorial)=> (
                                             <StyledTableRow key={tutorial.id}>
                                                 <StyledTableCell align="justify">
                                                     {tutorial.date}
