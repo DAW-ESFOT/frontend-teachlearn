@@ -29,6 +29,7 @@
     "react-swipeable-views": "^0.13.9",
     "react-swipeable-views-utils": "^0.14.0-alpha.0",
     "reactstrap": "^8.9.0",
+    "sweetalert": "^2.1.2",
     "swr": "^0.4.2",
     "yup": "^0.32.9"
   },
