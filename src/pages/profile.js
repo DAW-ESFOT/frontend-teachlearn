@@ -1,5 +1,6 @@
 //import Users from "@/components/Users";
 import Modals from "@/components/Modals";
+import EmpyTutorial from "@/components/EmpyTutorial";
 import React from "react";
 import withAuth from "@/hocs/withAuth";
 import { useAuth } from "@/lib/auth";
@@ -163,6 +164,9 @@ const Profile = () => {
               </StyledMenuItem>
               <StyledMenuItem>
                 <Modals />
+              </StyledMenuItem>
+              <StyledMenuItem>
+                <EmpyTutorial />
               </StyledMenuItem>
             </StyledMenu>
           </div>
