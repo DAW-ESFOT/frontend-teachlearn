@@ -9,13 +9,13 @@ class MyDocument extends Document {
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=RocknRoll+One&family=Stick&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;500&display=swap"
             rel="stylesheet"
           />
-
           <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swa"
+            rel="shortcut icon"
+            type="image/svg"
+            href="../../public/tl.jfif"
           />
         </Head>
         <body>

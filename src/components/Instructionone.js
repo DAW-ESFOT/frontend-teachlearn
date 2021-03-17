@@ -1,17 +1,17 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import StepContent from '@material-ui/core/StepContent';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import StepContent from "@material-ui/core/StepContent";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
-    backgroundColor:'#B4B29E',
+    width: "100%",
+    backgroundColor: "#B4B29E",
   },
   button: {
     marginTop: theme.spacing(1),
@@ -19,33 +19,38 @@ const useStyles = makeStyles((theme) => ({
   },
   actionsContainer: {
     marginBottom: theme.spacing(2),
-    backgroundColor:'#B4B29E',
+    backgroundColor: "#B4B29E",
   },
   resetContainer: {
     padding: theme.spacing(3),
-    backgroundColor:'#B4B29E',
+    backgroundColor: "#B4B29E",
   },
-  Continst:{
-    backgroundColor:'#B4B29E',
+  Continst: {
+    backgroundColor: "#B4B29E",
   },
 }));
 
 function getSteps() {
-    return ['Registro', 'Agendar una tutoría', 'Pagar tutoría', 'Conectarse a la tutoría'];
+  return [
+    "Registro",
+    "Agendar una tutoría",
+    "Pagar tutoría",
+    "Contactarse con el tutor",
+  ];
 }
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-        return `Se registra como estudiante dando clic en el botón REGISTRO y complete el formulario`;
-      case 1:
-        return 'De clic en agendar cita, se le redigirá a otra ventana donde especificarás la materia y los temas donde tengas dificultades.';
-      case 2:
-        return `Luego de concretar el horario, la materia y los temas, deberá cancelar el valor por la tutoría sea por depósito o tranferencia.`;
-      case 3:
-        return `Conectarse por la plataforma digital de Zoom en el horario acordado con el profesor.`;
-      default:
-        return 'Unknown step';
+      return `Se registra como estudiante dando clic en el botón REGISTRO y complete el formulario`;
+    case 1:
+      return "De clic en agendar cita, se le redigirá a otra ventana donde especificarás la materia y los temas donde tengas dificultades.";
+    case 2:
+      return `Luego de concretar el horario, la materia y los temas, deberá cancelar el valor por la tutoría sea por depósito o tranferencia.`;
+    case 3:
+      return `El tutor se contactará con usted al número de celular con el que se registró.`;
+    default:
+      return "Unknown step";
   }
 }
 
@@ -68,7 +73,11 @@ function VerticalLinearStepper() {
 
   return (
     <div className={classes.root}>
-      <Stepper activeStep={activeStep} className={classes.Continst} orientation="vertical">
+      <Stepper
+        activeStep={activeStep}
+        className={classes.Continst}
+        orientation="vertical"
+      >
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
@@ -89,7 +98,9 @@ function VerticalLinearStepper() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Finalizar' : 'Siguiente'}
+                    {activeStep === steps.length - 1
+                      ? "Finalizar"
+                      : "Siguiente"}
                   </Button>
                 </div>
               </div>
