@@ -6,154 +6,161 @@ import { makeStyles } from "@material-ui/core/styles";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useAuth } from "../lib/auth";
+import { Link as MuiLink } from "@material-ui/core";
 import Link from "next/link";
 import Routes from "../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
-    sectionDesktop: {
-        display: "none",
-        [theme.breakpoints.up("md")]: {
-            display: "flex",
-        },
+  sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
     },
-    sectionMobile: {
-        display: "flex",
-        [theme.breakpoints.up("md")]: {
-            display: "none",
-        },
+  },
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
     },
+  },
 }));
 
 const IconsMenu = () => {
-    const { logout, user } = useAuth();
-    const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { logout, user } = useAuth();
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const handleMenuAccountOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+  const handleMenuAccountOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    const handleMenuAccountClose = () => {
-        setAnchorEl(null);
-        handleMobileMenuClose();
-    };
+  const handleMenuAccountClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
 
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
 
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
 
-    const handleLogout = async () => {
-        logout();
-        handleMenuAccountClose();
-    };
+  const handleLogout = async () => {
+    logout();
+    handleMenuAccountClose();
+  };
 
-    const menuId = "account-menu";
-    const renderMenuAccount = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{ vertical: "top", horizontal: "right" }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{ vertical: "top", horizontal: "right" }}
-            open={isMenuOpen}
-            onClose={handleMenuAccountClose}
+  const menuId = "account-menu";
+  const renderMenuAccount = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMenuOpen}
+      onClose={handleMenuAccountClose}
+    >
+      <MenuItem onClick={handleMenuAccountClose}>
+        <Link href={Routes.PROFILE} passHref>
+          <MuiLink>Perfil</MuiLink>
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
+    </Menu>
+  );
+
+  const mobileMenuId = "mobile-account-menu";
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      {/*<MenuItem>*/}
+      {/*  <IconButton aria-label="show 4 new mails" color="inherit">*/}
+      {/*    <Badge badgeContent={4} color="secondary">*/}
+      {/*      <MailIcon />*/}
+      {/*    </Badge>*/}
+      {/*  </IconButton>*/}
+      {/*  <p>Messages</p>*/}
+      {/*</MenuItem>*/}
+      {/*<MenuItem>*/}
+      {/*  <IconButton aria-label="show 11 new notifications" color="inherit">*/}
+      {/*    <Badge badgeContent={11} color="secondary">*/}
+      {/*      <NotificationsIcon />*/}
+      {/*    </Badge>*/}
+      {/*  </IconButton>*/}
+      {/*  <p>Notifications</p>*/}
+      {/*</MenuItem>*/}
+      <MenuItem onClick={handleMenuAccountOpen}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
         >
-            <MenuItem onClick={handleMenuAccountClose}><Link href={Routes.PROFILE}>Perfil</Link></MenuItem>
-            <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
-        </Menu>
-    );
+          <AccountCircle />
+        </IconButton>
+        <p>
+          <Link href={Routes.PROFILE}>Perfi</Link>
+        </p>
+      </MenuItem>
+    </Menu>
+  );
 
-    const mobileMenuId = "mobile-account-menu";
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: "top", horizontal: "right" }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{ vertical: "top", horizontal: "right" }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
+  return (
+    <>
+      <div className={classes.sectionDesktop}>
+        {/*<IconButton aria-label="show 4 new mails" color="inherit">*/}
+        {/*  <Badge badgeContent={4} color="secondary">*/}
+        {/*    <MailIcon />*/}
+        {/*  </Badge>*/}
+        {/*</IconButton>*/}
+
+        {/*<IconButton aria-label="show 17 new notifications" color="inherit">*/}
+        {/*  <Badge badgeContent={17} color="secondary">*/}
+        {/*    <NotificationsIcon />*/}
+        {/*  </Badge>*/}
+        {/*</IconButton>*/}
+
+        {user ? (
+          <MenuItem onClick={handleMenuAccountOpen} id="account-menu-button">
+            <AccountCircle style={{ marginRight: 5 }} /> {user.name}
+          </MenuItem>
+        ) : (
+          <Link href={Routes.LOGIN}>
+            <MenuItem>Iniciar sesión</MenuItem>
+          </Link>
+        )}
+      </div>
+
+      <div className={classes.sectionMobile}>
+        <IconButton
+          aria-label="show more"
+          aria-controls={mobileMenuId}
+          aria-haspopup="true"
+          onClick={handleMobileMenuOpen}
+          color="inherit"
+          id="mobile-account-menu-button"
         >
-            {/*<MenuItem>*/}
-            {/*  <IconButton aria-label="show 4 new mails" color="inherit">*/}
-            {/*    <Badge badgeContent={4} color="secondary">*/}
-            {/*      <MailIcon />*/}
-            {/*    </Badge>*/}
-            {/*  </IconButton>*/}
-            {/*  <p>Messages</p>*/}
-            {/*</MenuItem>*/}
-            {/*<MenuItem>*/}
-            {/*  <IconButton aria-label="show 11 new notifications" color="inherit">*/}
-            {/*    <Badge badgeContent={11} color="secondary">*/}
-            {/*      <NotificationsIcon />*/}
-            {/*    </Badge>*/}
-            {/*  </IconButton>*/}
-            {/*  <p>Notifications</p>*/}
-            {/*</MenuItem>*/}
-            <MenuItem onClick={handleMenuAccountOpen}>
-                <IconButton
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p><Link href={Routes.PROFILE}>Perfi</Link></p>
-            </MenuItem>
-        </Menu>
-    );
-
-    return (
-        <>
-            <div className={classes.sectionDesktop}>
-                {/*<IconButton aria-label="show 4 new mails" color="inherit">*/}
-                {/*  <Badge badgeContent={4} color="secondary">*/}
-                {/*    <MailIcon />*/}
-                {/*  </Badge>*/}
-                {/*</IconButton>*/}
-
-                {/*<IconButton aria-label="show 17 new notifications" color="inherit">*/}
-                {/*  <Badge badgeContent={17} color="secondary">*/}
-                {/*    <NotificationsIcon />*/}
-                {/*  </Badge>*/}
-                {/*</IconButton>*/}
-
-                {user ? (
-                    <MenuItem onClick={handleMenuAccountOpen} id="account-menu-button">
-                        <AccountCircle style={{ marginRight: 5 }} /> {user.name}
-                    </MenuItem>
-                ) : (
-                    <Link href={Routes.LOGIN}>
-                        <MenuItem>Iniciar sesión</MenuItem>
-                    </Link>
-                )}
-            </div>
-
-            <div className={classes.sectionMobile}>
-                <IconButton
-                    aria-label="show more"
-                    aria-controls={mobileMenuId}
-                    aria-haspopup="true"
-                    onClick={handleMobileMenuOpen}
-                    color="inherit"
-                    id="mobile-account-menu-button"
-                >
-                    <MoreIcon />
-                </IconButton>
-            </div>
-            {renderMenuAccount}
-            {renderMobileMenu}
-        </>
-    );
+          <MoreIcon />
+        </IconButton>
+      </div>
+      {renderMenuAccount}
+      {renderMobileMenu}
+    </>
+  );
 };
 
 export default IconsMenu;
