@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { useRouter } from "next/router";
@@ -93,15 +93,19 @@ const schema = yup.object().shape({});
 const AddTutorial = (props) => {
     const {user}= useAuth();
     const classes = useStyles();
-    const { register, handleSubmit, control, errors } = useForm();
+    const { register, handleSubmit,} = useForm();
     const [name, setName] = useState("");
     const [image,setImage]=React.useState(null);
+    const fileInputRef = useRef();
 
     const onSubmit = async (data) => {
         console.log("data", data);
+
         const tutorialData = { ...data, teacher_id: null };
         console.log("Tutorial", tutorialData);
+
         try {
+
             const response = await api.post("/tutorials", tutorialData);
             console.log("Data Tutorial", response);
             return response;
@@ -126,12 +130,12 @@ const AddTutorial = (props) => {
         }
     };
 
-    const handleImage = async (image)=>{
+    const handleImage = (imageFile)=>{
+        //<input type="file" ref={fileInputRef}/>
         setImage(image)
-        const tutorialData = { ...data, teacher_id: null };
-        const response = await api.put("/tutorials/{tutorial}/image", tutorialData);
-        console.log("Data Tutorial", response);
-        return response;
+
+        console.log("image", imageFile);
+
     }
 
     return (
@@ -220,13 +224,15 @@ const AddTutorial = (props) => {
                             >
                                 Seleccione la imagen de comprobante de pago
                                 <input
-                                    type="file"
-                                    accept="image/png, .jpeg, .jpg, image/gif"
-                                    name="image"
-                                    id="image"
-                                    onChange={(e)=>handleImage(e.target.files)}
-                                    hidden
+                                  //  type="file"
+                                   // accept="image/png, .jpeg, .jpg, image/gif"
+                                    //name="image"
+                                    //id="image"
+                                    //onChange={(e)=>handleImage(e.target.files[0])}
+                                    //hidden
+                                type="file" ref={register}
                                 />
+
                             </Button>
                         </Grid>
                         <Grid item xs={12} >
