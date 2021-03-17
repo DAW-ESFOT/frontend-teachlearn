@@ -18,6 +18,7 @@ import GroupIcon from "@material-ui/icons/Group";
 import CommentIcon from "@material-ui/icons/Comment";
 import Routes from "../constants/routes";
 import Image from "next/image";
+import Comments from "@/components/Comments";
 
 const useStyles = makeStyles((theme) => ({
   root1: {
@@ -95,25 +96,7 @@ const Home = ({ comments }) => {
           Comentarios de nuestro usuarios{" "}
           <CommentIcon style={{ fontSize: 40 }} />
         </h1>
-        <Grid container direction="row" justify="space-between">
-          {comments.map((comment) => (
-            <Card className={classes.root3}>
-              <CardActionArea style={{ background: "#4DCD2F" }}>
-                <CardContent className={classes.card}>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h1"
-                    className={classes.comment}
-                    style={{ fontSize: 15 }}
-                  >
-                    {comment.text}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          ))}
-        </Grid>
+        <Grid container direction="row" justify="space-between"></Grid>
       </div>
       <div className={classes.root4}>
         <Link href={Routes.SCHEDULE} passHref>
@@ -193,16 +176,3 @@ const Home = ({ comments }) => {
   );
 };
 export default Home;
-
-export async function getStaticProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/comments`);
-  const comms = await res.json();
-
-  const comments = comms.data;
-
-  return {
-    props: {
-      comments,
-    },
-  };
-}

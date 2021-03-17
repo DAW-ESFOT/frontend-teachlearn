@@ -93,6 +93,7 @@ const EditUser = (props) => {
         // that falls out of the range of 2xx
         swal({
           title: translateMessage(error.response.data.error),
+          text: "No se pudo editar su perfil",
           icon: "error",
           button: "Aceptar",
           timer: "2000",
@@ -196,7 +197,7 @@ const EditUser = (props) => {
           <br />
           <br />
           <Grid item xs={6}>
-            <Link href={Routes.PROFILE}>
+            <Link href={Routes.HOME}>
               <Button
                 type="submit"
                 variant="contained"
