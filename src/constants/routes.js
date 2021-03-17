@@ -17,6 +17,7 @@ const privateRoutes = {
   EDITPROFILE: "/editprofile",
   ADDTUTORIA: "/addTutorial",
   ADDSUBJECT: "/addSubject",
+  ADDCOMMENT: "/newcomment",
   // ARTICLE_ID: "/articulo/:id",
 };
 
