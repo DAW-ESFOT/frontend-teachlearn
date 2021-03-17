@@ -55,13 +55,12 @@ const useStyles = makeStyles((theme) => ({
 const Tutorials = ({ tutorialId }) => {
   const classes = useStyles();
   const { user } = useAuth();
+
   const { data, error } = useSWR(`/my-tutorials`, fetcher);
 
-  console.log("data Complaints", data);
-
-  if (error) return <div>No se pudo cargar los datos de la tutoria</div>;
-  if (!data) return <Loading />;
-
+  if (error) return <div>No se pudo cargar los datos</div>;
+  if (!data) return <div>Cargando datos...</div>;
+  // render data
   return (
     <>
       <h2>Tutorias</h2>
@@ -118,4 +117,5 @@ const Tutorials = ({ tutorialId }) => {
     </>
   );
 };
-export default withAuth(Tutorials);
+
+export default Tutorials;

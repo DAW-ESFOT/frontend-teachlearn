@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
+import swal from "sweetalert";
 import { fetcher } from "@/lib/utils";
 import Loading from "@/components/Loading";
 import withAuth from "@/hocs/withAuth";
@@ -79,12 +80,23 @@ const EditUser = (props) => {
     try {
       const response = await api.put("/users/" + user.id, data);
       console.log("user", response);
+      swal({
+        title: "Perfil actualizado!",
+        icon: "success",
+        button: "Aceptar",
+        timer: "3000",
+      });
       return response;
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        alert(translateMessage(error.response.data.error));
+        swal({
+          title: translateMessage(error.response.data.error),
+          icon: "error",
+          button: "Aceptar",
+          timer: "2000",
+        });
         console.log(error.response.data);
         return Promise.reject(error.response);
         // return error.response;
