@@ -26,6 +26,7 @@ import {
 import api from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import Button from "@material-ui/core/Button";
+import translateMessage from "../constants/messages";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -64,6 +65,36 @@ const Tutorial2 = ({ tutorialId }) => {
   if (error) return <div>No se pudo cargar los datos de la tutoria</div>;
   if (!data) return <Loading />;
 
+  const accept = async (data, tutorialId) => {
+    console.log("data", data);
+    try {
+      const response = await api.post(
+        "/tutorials/" + tutorialId + "/teachers",
+        data
+      );
+      console.log("user", response);
+      return response;
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        alert(translateMessage(error.response.data.error));
+        console.log(error.response.data);
+        return Promise.reject(error.response);
+        // return error.response;
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+      console.log(error.config);
+    }
+  };
+
   return (
     <>
       <h2>Tutorias</h2>
@@ -86,7 +117,7 @@ const Tutorial2 = ({ tutorialId }) => {
                 </TableHead>
                 <TableBody>
                   {data.data.map((tutorial) => (
-                    <StyledTableRow key={tutorial.id}>
+                    <StyledTableRow key={(tutorial.id = tutorialId)}>
                       <StyledTableCell align="justify">
                         {tutorial.date}
                       </StyledTableCell>
@@ -109,6 +140,8 @@ const Tutorial2 = ({ tutorialId }) => {
                           variant="contained"
                           color="primary"
                           className={classes.submit}
+                          onClick={accept}
+                          value={tutorialId}
                         >
                           Aceptar Tutoria
                         </Button>
